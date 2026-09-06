@@ -7,13 +7,30 @@ import sqlite3
 import hashlib
 from datetime import datetime, timedelta
 from functools import wraps
-from flask import Flask, render_template, request, jsonify, redirect, url_for, session
+from flask import Flask, render_template, request, jsonify, redirect, url_for, session, send_from_directory
+import jinja2
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DB_PATH = os.path.join(BASE_DIR, "licenses.db")
 
 app = Flask(__name__, template_folder=os.path.join(BASE_DIR, "templates"), static_folder=os.path.join(BASE_DIR, "static"))
 app.secret_key = os.environ.get("ADMIN_SECRET_KEY", "hassan-autofarm-pro-secret-2026-key-auth")
+
+# Support loading templates from both 'templates/' subfolder AND root directory '.'
+template_dirs = [os.path.join(BASE_DIR, "templates"), BASE_DIR]
+app.jinja_loader = jinja2.ChoiceLoader([
+    jinja2.FileSystemLoader(d) for d in template_dirs if os.path.exists(d)
+])
+
+# Fallback route to serve static assets from root '.' if not in 'static/'
+@app.route('/static/<path:filename>')
+def custom_static(filename):
+    static_folder = os.path.join(BASE_DIR, "static")
+    if os.path.exists(os.path.join(static_folder, filename)):
+        return send_from_directory(static_folder, filename)
+    elif os.path.exists(os.path.join(BASE_DIR, filename)):
+        return send_from_directory(BASE_DIR, filename)
+    return "Not Found", 404
 
 # Admin Credentials (can be overridden via environment variables)
 ADMIN_USERNAME = os.environ.get("ADMIN_USER", "admin")

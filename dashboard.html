@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hassan AutoFarm — License Authorization Center</title>
+  <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+  <link rel="icon" type="image/png" href="/static/favicon.png">
+  <link rel="apple-touch-icon" href="/static/logo_icon.png">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: #070a12;
+    }
+    .font-mono { font-family: 'JetBrains Mono', monospace; }
+    
+    /* Custom switch toggle */
+    .switch-checkbox:checked + .switch-label {
+      background-color: #10b981;
+    }
+    .switch-checkbox:checked + .switch-label .switch-dot {
+      transform: translateX(20px);
+    }
+  </style>
+</head>
+<body class="min-h-screen text-slate-200 flex flex-col">
+
+  <!-- TOP NAVIGATION -->
+  <header class="bg-[#0b0f19] border-b border-slate-800/80 sticky top-0 z-30 px-6 py-3.5 flex items-center justify-between">
+    <div class="flex items-center gap-3">
+      <div class="w-10 h-10 rounded-xl overflow-hidden border border-cyan-400/50 shadow-lg shadow-cyan-950/60 shrink-0 bg-gradient-to-br from-[#0c1220] to-[#06080d] p-0.5">
+        <img src="/static/logo_icon.png" alt="Hassan AutoFarm" class="w-full h-full object-contain rounded-lg drop-shadow-[0_2px_8px_rgba(6,182,212,0.4)]">
+      </div>
+      <div>
+        <h1 class="text-sm font-black text-white tracking-wide flex items-center gap-2">
+          <span>Hassan AutoFarm</span>
+          <span class="text-[10px] bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 px-2 py-0.5 rounded-full font-mono font-bold uppercase">Download v1.1 Hub</span>
+        </h1>
+        <p class="text-[11px] text-slate-400">Remote Kill-Switch & 1-PC HWID Lock Management</p>
+      </div>
+    </div>
+
+    <div class="flex items-center gap-4">
+      <div class="hidden sm:flex items-center gap-2 bg-[#0e1424] border border-slate-800 px-3 py-1.5 rounded-xl text-xs">
+        <div class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></div>
+        <span class="text-slate-400">Server Online:</span>
+        <span class="text-emerald-400 font-mono font-bold">Port 8000</span>
+      </div>
+      <div class="flex items-center gap-2 border-l border-slate-800 pl-4">
+        <span class="text-xs text-slate-400">Admin: <strong class="text-white">{{ admin_user }}</strong></span>
+        <a href="/logout" class="text-xs bg-rose-500/10 hover:bg-rose-500/20 text-rose-400 border border-rose-500/30 px-3 py-1.5 rounded-lg transition flex items-center gap-1.5">
+          <i data-lucide="log-out" class="w-3.5 h-3.5"></i>
+          <span>Logout</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN DASHBOARD CONTENT -->
+  <main class="flex-1 p-6 max-w-7xl w-full mx-auto space-y-6">
+
+    <!-- METRICS CARDS -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div class="bg-[#0e1424] border border-slate-800/90 rounded-2xl p-4 flex items-center justify-between">
+        <div>
+          <p class="text-xs text-slate-400 font-medium">Total Licenses</p>
+          <p class="text-2xl font-black text-white mt-1">{{ total }}</p>
+        </div>
+        <div class="w-11 h-11 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400">
+          <i data-lucide="key" class="w-5 h-5"></i>
+        </div>
+      </div>
+
+      <div class="bg-[#0e1424] border border-slate-800/90 rounded-2xl p-4 flex items-center justify-between">
+        <div>
+          <p class="text-xs text-slate-400 font-medium">Active (ON)</p>
+          <p class="text-2xl font-black text-emerald-400 mt-1">{{ active }}</p>
+        </div>
+        <div class="w-11 h-11 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400">
+          <i data-lucide="toggle-right" class="w-5 h-5"></i>
+        </div>
+      </div>
+
+      <div class="bg-[#0e1424] border border-slate-800/90 rounded-2xl p-4 flex items-center justify-between">
+        <div>
+          <p class="text-xs text-slate-400 font-medium">Disabled (OFF)</p>
+          <p class="text-2xl font-black text-rose-400 mt-1">{{ disabled }}</p>
+        </div>
+        <div class="w-11 h-11 rounded-xl bg-rose-500/10 border border-rose-500/20 flex items-center justify-center text-rose-400">
+          <i data-lucide="shield-ban" class="w-5 h-5"></i>
+        </div>
+      </div>
+
+      <div class="bg-[#0e1424] border border-slate-800/90 rounded-2xl p-4 flex items-center justify-between">
+        <div>
+          <p class="text-xs text-slate-400 font-medium">Expired</p>
+          <p class="text-2xl font-black text-amber-400 mt-1">{{ expired }}</p>
+        </div>
+        <div class="w-11 h-11 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400">
+          <i data-lucide="clock" class="w-5 h-5"></i>
+        </div>
+      </div>
+    </div>
+
+    <!-- ACTION BAR: SEARCH, FILTERS & NEW KEY BUTTON -->
+    <div class="bg-[#0e1424] border border-slate-800/90 rounded-2xl p-4 flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div class="flex flex-wrap items-center gap-2">
+        <div class="relative w-72">
+          <i data-lucide="search" class="w-4 h-4 absolute left-3 top-3 text-slate-500"></i>
+          <input type="text" id="search-input" oninput="filterLicenses()" placeholder="Search client, key, HWID..."
+            class="w-full bg-[#080c14] border border-slate-800 rounded-xl pl-9 pr-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 transition">
+        </div>
+        <div class="flex items-center gap-1 bg-[#080c14] border border-slate-800 p-1 rounded-xl text-xs">
+          <button onclick="setStatusFilter('all')" id="filter-all" class="px-3 py-1 rounded-lg font-semibold bg-indigo-600 text-white transition">All</button>
+          <button onclick="setStatusFilter('active')" id="filter-active" class="px-3 py-1 rounded-lg text-slate-400 hover:text-white transition">Active</button>
+          <button onclick="setStatusFilter('disabled')" id="filter-disabled" class="px-3 py-1 rounded-lg text-slate-400 hover:text-white transition">Disabled</button>
+          <button onclick="setStatusFilter('expired')" id="filter-expired" class="px-3 py-1 rounded-lg text-slate-400 hover:text-white transition">Expired</button>
+        </div>
+      </div>
+
+      <button onclick="openCreateModal()" class="bg-gradient-to-r from-indigo-600 to-cyan-600 hover:from-indigo-500 hover:to-cyan-500 text-white text-xs font-bold px-4 py-2.5 rounded-xl shadow-lg shadow-indigo-600/30 transition flex items-center gap-2 self-start md:self-auto cursor-pointer">
+        <i data-lucide="plus-circle" class="w-4 h-4"></i>
+        <span>Generate New License</span>
+      </button>
+    </div>
+
+    <!-- LICENSES TABLE -->
+    <div class="bg-[#0e1424] border border-slate-800/90 rounded-2xl overflow-hidden shadow-xl">
+      <div class="overflow-x-auto">
+        <table class="w-full text-left text-xs text-slate-300">
+          <thead class="bg-[#080c14] text-slate-400 uppercase tracking-wider text-[11px] border-b border-slate-800">
+            <tr>
+              <th class="px-5 py-3.5 font-bold">Client / Notes</th>
+              <th class="px-5 py-3.5 font-bold">License Key</th>
+              <th class="px-5 py-3.5 font-bold">Bound PC (HWID)</th>
+              <th class="px-5 py-3.5 font-bold">Expiry / Days</th>
+              <th class="px-5 py-3.5 font-bold text-center">Remote Switch (ON / OFF)</th>
+              <th class="px-5 py-3.5 font-bold text-right">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="licenses-tbody" class="divide-y divide-slate-800/60">
+            {% for lic in licenses %}
+            <tr id="row-{{ lic.id }}" class="hover:bg-slate-800/30 transition"
+                data-name="{{ lic.client_name | lower }}"
+                data-key="{{ lic.license_key | lower }}"
+                data-hwid="{{ (lic.hwid or '') | lower }}"
+                data-status="{% if lic.is_expired %}expired{% elif lic.is_active %}active{% else %}disabled{% endif %}">
+              
+              <!-- Client Name -->
+              <td class="px-5 py-4">
+                <div class="font-bold text-white text-sm">{{ lic.client_name }}</div>
+                {% if lic.client_phone %}
+                <div class="text-[11px] text-slate-400 flex items-center gap-1 mt-0.5">
+                  <i data-lucide="phone" class="w-3 h-3 text-emerald-400"></i>
+                  <span>{{ lic.client_phone }}</span>
+                </div>
+                {% endif %}
+                {% if lic.notes %}
+                <div class="text-[10px] text-slate-500 italic mt-0.5">{{ lic.notes }}</div>
+                {% endif %}
+              </td>
+
+              <!-- License Key -->
+              <td class="px-5 py-4">
+                <div class="inline-flex items-center gap-2 bg-[#080c14] border border-slate-800 px-2.5 py-1 rounded-lg">
+                  <span class="font-mono font-bold text-cyan-400 text-xs select-all">{{ lic.license_key }}</span>
+                  <button onclick="copyToClipboard('{{ lic.license_key }}')" title="Copy Key" class="text-slate-400 hover:text-white transition">
+                    <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+                  </button>
+                </div>
+                <div class="text-[10px] text-slate-500 mt-1">Created: {{ lic.created_at[:10] }}</div>
+              </td>
+
+              <!-- HWID Machine Lock -->
+              <td class="px-5 py-4">
+                {% if lic.hwid %}
+                <div class="inline-flex items-center gap-1.5 bg-purple-500/10 border border-purple-500/30 text-purple-300 font-mono text-[11px] px-2 py-0.5 rounded-md">
+                  <i data-lucide="laptop" class="w-3 h-3 text-purple-400"></i>
+                  <span title="{{ lic.hwid }}">{{ lic.hwid[:16] }}...</span>
+                </div>
+                <div class="text-[10px] text-slate-500 mt-1">Seen: {{ lic.last_seen }}</div>
+                {% else %}
+                <span class="inline-flex items-center gap-1 bg-amber-500/10 border border-amber-500/30 text-amber-400 text-[10px] px-2 py-0.5 rounded-md">
+                  <i data-lucide="clock" class="w-3 h-3"></i>
+                  <span>Waiting 1st Activation</span>
+                </span>
+                {% endif %}
+              </td>
+
+              <!-- Expiry & Remaining Days -->
+              <td class="px-5 py-4">
+                {% if lic.is_expired %}
+                <span class="inline-flex items-center gap-1 bg-rose-500/10 text-rose-400 border border-rose-500/30 px-2 py-0.5 rounded-md font-bold text-[11px]">
+                  <i data-lucide="alert-triangle" class="w-3 h-3"></i>
+                  <span>Expired ({{ lic.expires_at }})</span>
+                </span>
+                {% elif lic.expires_at == 'Lifetime' %}
+                <span class="inline-flex items-center gap-1 bg-indigo-500/10 text-indigo-400 border border-indigo-500/30 px-2 py-0.5 rounded-md font-bold text-[11px]">
+                  <i data-lucide="infinity" class="w-3 h-3"></i>
+                  <span>Lifetime Access</span>
+                </span>
+                {% else %}
+                <div class="font-semibold text-slate-200">{{ lic.expires_at }}</div>
+                <div class="text-[11px] text-cyan-400 font-mono font-bold mt-0.5">{{ lic.days_remaining }} days left</div>
+                {% endif %}
+              </td>
+
+              <!-- REMOTE ON / OFF SWITCH -->
+              <td class="px-5 py-4 text-center">
+                <div class="flex flex-col items-center gap-1">
+                  <label class="relative inline-flex items-center cursor-pointer">
+                    <input type="checkbox" onchange="toggleLicenseStatus({{ lic.id }})" id="switch-{{ lic.id }}" class="sr-only switch-checkbox" {% if lic.is_active %}checked{% endif %}>
+                    <div class="w-11 h-6 bg-rose-900/80 border border-slate-700 rounded-full switch-label transition-colors duration-200 ease-in-out">
+                      <div class="switch-dot w-4 h-4 bg-white rounded-full shadow-md transform transition-transform duration-200 ease-in-out mt-1 ml-1"></div>
+                    </div>
+                  </label>
+                  <span id="badge-{{ lic.id }}" class="text-[10px] font-bold uppercase tracking-wider {% if lic.is_active %}text-emerald-400{% else %}text-rose-400{% endif %}">
+                    {% if lic.is_active %}ACTIVE (ON){% else %}DISABLED (OFF){% endif %}
+                  </span>
+                </div>
+              </td>
+
+              <!-- ACTIONS -->
+              <td class="px-5 py-4 text-right">
+                <div class="inline-flex items-center gap-1.5">
+                  <button onclick="resetHwid({{ lic.id }}, '{{ lic.client_name }}')" title="Reset Machine Lock (Allow new PC)" class="bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white px-2 py-1 rounded-lg border border-slate-700 transition flex items-center gap-1">
+                    <i data-lucide="refresh-cw" class="w-3 h-3"></i>
+                    <span class="text-[10px]">Reset HWID</span>
+                  </button>
+                  <button onclick="extendKey({{ lic.id }}, '{{ lic.client_name }}')" title="Extend +30 Days" class="bg-indigo-900/40 hover:bg-indigo-800/60 text-indigo-300 px-2 py-1 rounded-lg border border-indigo-700/50 transition flex items-center gap-1">
+                    <i data-lucide="calendar-plus" class="w-3 h-3"></i>
+                    <span class="text-[10px]">+30D</span>
+                  </button>
+                  <button onclick="deleteKey({{ lic.id }}, '{{ lic.client_name }}')" title="Delete License" class="bg-rose-900/30 hover:bg-rose-800/50 text-rose-300 px-2 py-1 rounded-lg border border-rose-700/40 transition">
+                    <i data-lucide="trash-2" class="w-3 h-3"></i>
+                  </button>
+                </div>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+
+      {% if licenses | length == 0 %}
+      <div class="text-center py-12 text-slate-500">
+        <i data-lucide="key" class="w-10 h-10 mx-auto mb-2 opacity-40"></i>
+        <p>No license keys yet. Click "Generate New License" to create one.</p>
+      </div>
+      {% endif %}
+    </div>
+  </main>
+
+  <!-- GENERATE LICENSE MODAL -->
+  <div id="modal-create" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center hidden">
+    <div class="bg-[#0e1424] border border-slate-800 rounded-2xl w-full max-w-md shadow-2xl p-6 space-y-4 relative">
+      <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+        <h3 class="text-white font-bold text-sm flex items-center gap-2">
+          <i data-lucide="plus-circle" class="w-4 h-4 text-indigo-400"></i>
+          <span>Generate Client License Key</span>
+        </h3>
+        <button onclick="closeCreateModal()" class="text-slate-400 hover:text-white">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+      <form id="create-license-form" onsubmit="handleCreateLicense(event)" class="space-y-3.5">
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1">Client Name *</label>
+          <input type="text" id="new-client-name" required placeholder="e.g. Ali Khan / Trader VIP"
+            class="w-full bg-[#080c14] border border-slate-800 rounded-xl px-3 py-2 text-xs text-white placeholder-slate-600 focus:outline-none focus:border-indigo-500">
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1">WhatsApp / Phone Number</label>
+          <input type="text" id="new-client-phone" placeholder="e.g. 03001234567"
+            class="w-full bg-[#080c14] border border-slate-800 rounded-xl px-3 py-2 text-xs text-white placeholder-slate-600 focus:outline-none focus:border-indigo-500">
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1">License Validity Duration</label>
+          <select id="new-duration" class="w-full bg-[#080c14] border border-slate-800 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-indigo-500">
+            <option value="7">7 Days (Trial)</option>
+            <option value="15">15 Days</option>
+            <option value="30" selected>30 Days (1 Month)</option>
+            <option value="90">90 Days (3 Months)</option>
+            <option value="180">180 Days (6 Months)</option>
+            <option value="365">365 Days (1 Year)</option>
+            <option value="lifetime">Lifetime License</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1">Custom Key (Leave blank to auto-generate)</label>
+          <input type="text" id="new-custom-key" placeholder="Leave blank for automatic key"
+            class="w-full bg-[#080c14] border border-slate-800 rounded-xl px-3 py-2 text-xs text-white placeholder-slate-600 font-mono focus:outline-none focus:border-indigo-500">
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1">Internal Notes</label>
+          <input type="text" id="new-notes" placeholder="e.g. Paid via JazzCash, 2nd month renewal"
+            class="w-full bg-[#080c14] border border-slate-800 rounded-xl px-3 py-2 text-xs text-white placeholder-slate-600 focus:outline-none focus:border-indigo-500">
+        </div>
+
+        <div class="pt-2 flex items-center justify-end gap-2">
+          <button type="button" onclick="closeCreateModal()" class="px-4 py-2 rounded-xl text-xs text-slate-400 hover:text-white border border-slate-800 transition">Cancel</button>
+          <button type="submit" class="bg-gradient-to-r from-indigo-600 to-cyan-600 hover:from-indigo-500 hover:to-cyan-500 text-white text-xs font-bold px-5 py-2 rounded-xl shadow-lg transition flex items-center gap-1.5">
+            <i data-lucide="check" class="w-4 h-4"></i>
+            <span>Create License</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION CONTAINER -->
+  <div id="toast" class="fixed bottom-6 right-6 bg-[#0e1424] border border-slate-700 text-white text-xs px-4 py-3 rounded-xl shadow-2xl transition-all duration-300 transform translate-y-20 opacity-0 flex items-center gap-2 z-50">
+    <i data-lucide="check-circle" class="w-4 h-4 text-emerald-400"></i>
+    <span id="toast-msg">Operation successful</span>
+  </div>
+
+  <script>
+    lucide.createIcons();
+
+    function showToast(msg, isError = false) {
+      const toast = document.getElementById('toast');
+      const toastMsg = document.getElementById('toast-msg');
+      toastMsg.innerText = msg;
+      toast.className = `fixed bottom-6 right-6 ${isError ? 'bg-rose-950 border-rose-700' : 'bg-[#0e1424] border-slate-700'} text-white text-xs px-4 py-3 rounded-xl shadow-2xl transition-all duration-300 transform translate-y-0 opacity-100 flex items-center gap-2 z-50`;
+      setTimeout(() => {
+        toast.className = toast.className.replace('translate-y-0 opacity-100', 'translate-y-20 opacity-0');
+      }, 3500);
+    }
+
+    function copyToClipboard(text) {
+      navigator.clipboard.writeText(text).then(() => {
+        showToast(`Key copied to clipboard: ${text}`);
+      });
+    }
+
+    // REMOTE ON / OFF SWITCH FUNCTION
+    async function toggleLicenseStatus(keyId) {
+      try {
+        const res = await fetch('/admin/keys/toggle', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ id: keyId })
+        });
+        const data = await res.json();
+        if (data.success) {
+          const badge = document.getElementById(`badge-${keyId}`);
+          const row = document.getElementById(`row-${keyId}`);
+          if (data.is_active) {
+            badge.innerText = 'ACTIVE (ON)';
+            badge.className = 'text-[10px] font-bold uppercase tracking-wider text-emerald-400';
+            row.setAttribute('data-status', 'active');
+          } else {
+            badge.innerText = 'DISABLED (OFF)';
+            badge.className = 'text-[10px] font-bold uppercase tracking-wider text-rose-400';
+            row.setAttribute('data-status', 'disabled');
+          }
+          showToast(data.message);
+        } else {
+          showToast(data.message || 'Error toggling license', true);
+        }
+      } catch (e) {
+        showToast('Connection failed while toggling status', true);
+      }
+    }
+
+    async function resetHwid(keyId, clientName) {
+      if (!confirm(`Are you sure you want to reset HWID for ${clientName}? They will be able to bind a new PC.`)) return;
+      try {
+        const res = await fetch('/admin/keys/reset_hwid', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ id: keyId })
+        });
+        const data = await res.json();
+        if (data.success) {
+          showToast(`HWID Reset: ${clientName} can now activate on a new PC!`);
+          setTimeout(() => window.location.reload(), 1200);
+        } else {
+          showToast(data.message, true);
+        }
+      } catch (e) {
+        showToast('Error resetting HWID', true);
+      }
+    }
+
+    async function extendKey(keyId, clientName) {
+      try {
+        const res = await fetch('/admin/keys/extend', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ id: keyId, days: 30 })
+        });
+        const data = await res.json();
+        if (data.success) {
+          showToast(`Extended ${clientName} license +30 days! New date: ${data.new_expires_at}`);
+          setTimeout(() => window.location.reload(), 1200);
+        } else {
+          showToast(data.message, true);
+        }
+      } catch (e) {
+        showToast('Error extending license', true);
+      }
+    }
+
+    async function deleteKey(keyId, clientName) {
+      if (!confirm(`Are you sure you want to permanently delete license for ${clientName}?`)) return;
+      try {
+        const res = await fetch('/admin/keys/delete', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ id: keyId })
+        });
+        const data = await res.json();
+        if (data.success) {
+          document.getElementById(`row-${keyId}`)?.remove();
+          showToast(`License for ${clientName} deleted.`);
+        } else {
+          showToast(data.message, true);
+        }
+      } catch (e) {
+        showToast('Error deleting license', true);
+      }
+    }
+
+    // CREATE MODAL
+    function openCreateModal() {
+      document.getElementById('modal-create').classList.remove('hidden');
+    }
+    function closeCreateModal() {
+      document.getElementById('modal-create').classList.add('hidden');
+    }
+
+    async function handleCreateLicense(e) {
+      e.preventDefault();
+      const payload = {
+        client_name: document.getElementById('new-client-name').value,
+        client_phone: document.getElementById('new-client-phone').value,
+        duration: document.getElementById('new-duration').value,
+        custom_key: document.getElementById('new-custom-key').value,
+        notes: document.getElementById('new-notes').value
+      };
+      try {
+        const res = await fetch('/admin/keys/create', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        const data = await res.json();
+        if (data.success) {
+          showToast(data.message);
+          closeCreateModal();
+          setTimeout(() => window.location.reload(), 1000);
+        } else {
+          showToast(data.message, true);
+        }
+      } catch (err) {
+        showToast('Server connection error', true);
+      }
+    }
+
+    // SEARCH & FILTER
+    let currentFilter = 'all';
+    function setStatusFilter(filter) {
+      currentFilter = filter;
+      ['all', 'active', 'disabled', 'expired'].forEach(f => {
+        const btn = document.getElementById(`filter-${f}`);
+        if (f === filter) {
+          btn.className = 'px-3 py-1 rounded-lg font-semibold bg-indigo-600 text-white transition';
+        } else {
+          btn.className = 'px-3 py-1 rounded-lg text-slate-400 hover:text-white transition';
+        }
+      });
+      filterLicenses();
+    }
+
+    function filterLicenses() {
+      const q = document.getElementById('search-input').value.toLowerCase().trim();
+      const rows = document.querySelectorAll('#licenses-tbody tr');
+      rows.forEach(r => {
+        const name = r.getAttribute('data-name') || '';
+        const key = r.getAttribute('data-key') || '';
+        const hwid = r.getAttribute('data-hwid') || '';
+        const status = r.getAttribute('data-status') || '';
+
+        const matchesSearch = !q || name.includes(q) || key.includes(q) || hwid.includes(q);
+        const matchesStatus = currentFilter === 'all' || status === currentFilter;
+
+        if (matchesSearch && matchesStatus) {
+          r.style.display = '';
+        } else {
+          r.style.display = 'none';
+        }
+      });
+    }
+  </script>
+</body>
+</html>
