@@ -1,0 +1,166 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --bg-main: #06080d;
+  --bg-sidebar: #090c14;
+  --bg-card: #0e121d;
+  --bg-card-hover: #131826;
+  --border-card: #182030;
+  --border-glow: #242f46;
+  --text-main: #e2e8f0;
+  --text-muted: #758398;
+  --accent-green: #10b981;
+  --accent-cyan: #06b6d4;
+  --accent-purple: #7c3aed;
+  --accent-pink: #f43f5e;
+  --accent-red: #ef4444;
+  --accent-orange: #f59e0b;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  user-select: none;
+}
+
+body {
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  overflow: hidden;
+  height: 100vh;
+  width: 100vw;
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(9, 12, 20, 0.8);
+}
+::-webkit-scrollbar-thumb {
+  background: #202a3f;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #313f5e;
+}
+
+/* Glowing Badges & Borders */
+.glow-green {
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.25);
+}
+.glow-cyan {
+  box-shadow: 0 0 10px rgba(6, 182, 212, 0.25);
+}
+.glow-purple {
+  box-shadow: 0 0 10px rgba(124, 58, 237, 0.25);
+}
+.glow-pink {
+  box-shadow: 0 0 12px rgba(244, 63, 94, 0.35);
+}
+
+/* Live Terminal Monospace */
+.font-mono {
+  font-family: 'JetBrains Mono', monospace !important;
+}
+
+/* Custom Switch Toggle */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 36px;
+  height: 18px;
+}
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: #1a2234;
+  transition: .2s ease;
+  border-radius: 18px;
+}
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 12px;
+  width: 12px;
+  left: 3px;
+  bottom: 3px;
+  background-color: #ffffff;
+  transition: .2s ease;
+  border-radius: 50%;
+}
+input:checked + .slider {
+  background-color: #10b981;
+  box-shadow: 0 0 8px rgba(16, 185, 129, 0.4);
+}
+input:checked + .slider:before {
+  transform: translateX(18px);
+}
+
+/* Blurred Logs Option */
+.logs-blurred .log-line-text {
+  filter: blur(4px);
+  user-select: none;
+  transition: filter 0.2s ease;
+}
+.logs-blurred .log-line-text:hover {
+  filter: blur(0px);
+}
+
+/* Custom Range Slider */
+input[type=range] {
+  -webkit-appearance: none;
+  background: #182030;
+  height: 5px;
+  border-radius: 3px;
+  outline: none;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #f59e0b;
+  cursor: pointer;
+  box-shadow: 0 0 8px rgba(245, 158, 11, 0.7);
+}
+
+/* Classy Logo Effects */
+/* Classy Logo Effects */
+.classy-logo-box {
+  position: relative;
+  border-radius: 14px;
+  background: radial-gradient(circle at 50% 30%, rgba(6, 182, 212, 0.18), rgba(9, 12, 20, 0.95) 75%);
+  border: 1px solid rgba(6, 182, 212, 0.35);
+  box-shadow: 0 4px 20px -2px rgba(6, 182, 212, 0.3), 0 0 1px 1px rgba(6, 182, 212, 0.25);
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.classy-logo-box:hover {
+  box-shadow: 0 8px 28px 0 rgba(6, 182, 212, 0.5), 0 0 2px 1px rgba(6, 182, 212, 0.6);
+  border-color: rgba(6, 182, 212, 0.6);
+  transform: translateY(-1px);
+}
+.classy-logo-box img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+  filter: drop-shadow(0 2px 10px rgba(6, 182, 212, 0.35));
+}
+.classy-logo-box:hover img {
+  transform: scale(1.06);
+  filter: drop-shadow(0 4px 16px rgba(6, 182, 212, 0.55));
+}

@@ -1,0 +1,1850 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hassan AutoFarm Pro AI — Download Version 1.1</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            cyberDark: '#06080d',
+            cyberSidebar: '#090c14',
+            cyberCard: '#0e121d',
+            cyberCardHover: '#131826',
+            cyberBorder: '#182030',
+            cyberBorderGlow: '#242f46',
+            neonGreen: '#10b981',
+            neonCyan: '#06b6d4',
+            neonPurple: '#7c3aed',
+            neonOrange: '#f59e0b',
+            neonPink: '#f43f5e',
+            neonRed: '#ef4444'
+          }
+        }
+      }
+    }
+  </script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+  <link rel="icon" type="image/png" href="/static/favicon.png">
+  <link rel="apple-touch-icon" href="/static/logo_icon.png">
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body class="bg-[#06080d] text-slate-200 flex flex-col h-screen overflow-hidden text-xs">
+
+  <!-- TOP HEADER / STATUS BAR -->
+  <header class="h-11 bg-[#090c14] border-b border-[#182030] flex items-center justify-between px-3 z-20 shrink-0">
+    <!-- Left: Download Version 1.1 Pill -->
+    <div class="flex items-center gap-2.5">
+      <div class="flex items-center gap-2 bg-gradient-to-r from-cyan-950/50 to-indigo-950/50 border border-cyan-500/30 px-3 py-1 rounded-full text-[11px] shadow-sm">
+        <img src="/static/logo_icon.png" alt="Logo" class="w-5 h-5 rounded-md object-contain ring-1 ring-cyan-400/50 drop-shadow-[0_0_6px_rgba(6,182,212,0.6)]">
+        <span class="text-slate-300 font-medium">Release: <strong class="text-cyan-300 font-mono font-bold">Download Version 1.1</strong></span>
+        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse ml-0.5"></span>
+      </div>
+    </div>
+
+    <!-- Center Badges -->
+    <div class="flex items-center gap-3">
+      <a href="https://wa.me/923156535711" target="_blank" class="flex items-center gap-1.5 bg-emerald-950/40 border border-emerald-800/60 hover:border-emerald-500 px-3 py-0.5 rounded-full text-emerald-400 font-medium transition">
+        <i data-lucide="message-circle" class="w-3.5 h-3.5"></i>
+        <span>WhatsApp Support: <strong class="text-white font-mono">03156535711</strong></span>
+      </a>
+
+      <div class="flex items-center gap-2 bg-[#0e121d] border border-amber-900/40 px-2.5 py-0.5 rounded-full text-amber-300">
+        <i data-lucide="lock" class="w-3.5 h-3.5"></i>
+        <span>Privacy Demo:</span>
+        <span id="privacy-status-text" class="text-slate-400 font-bold">OFF</span>
+        <label class="switch ml-1">
+          <input type="checkbox" id="privacy-toggle" onchange="togglePrivacyMode(this.checked)">
+          <span class="slider"></span>
+        </label>
+      </div>
+    </div>
+
+    <!-- Right System Indicators -->
+    <div class="flex items-center gap-3">
+      <div class="flex items-center gap-1.5 text-slate-300 text-[11px] cursor-pointer" onclick="showToast('Hardware Acceleration Active')">
+        <span id="header-speed-dot" class="w-2 h-2 rounded-full bg-emerald-400 shadow-sm shadow-emerald-400 animate-pulse"></span>
+        <span id="header-speed-badge" class="font-medium text-emerald-300">High Speed (GPU Accelerated)</span>
+      </div>
+      <div class="flex items-center gap-1.5 bg-blue-950/40 border border-blue-800/50 px-2.5 py-0.5 rounded-full text-blue-300 text-[10px]">
+        <i data-lucide="shield-check" class="w-3 h-3 text-blue-400"></i>
+        <span>Antivirus Whitelisted</span>
+      </div>
+      <div onclick="openModal('modal-license')" class="flex items-center gap-1.5 bg-emerald-950/50 border border-emerald-800/60 hover:border-emerald-400 px-2.5 py-0.5 rounded-full text-emerald-300 text-[10px] cursor-pointer transition shadow-sm">
+        <i data-lucide="shield-check" class="w-3 h-3 text-emerald-400"></i>
+        <span id="top-license-status">Master PC: Active</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- TOP ROW: BRAND LOGO + 4 METRIC CARDS (Latest 2026 SaaS Aesthetic) -->
+  <section class="px-3 py-2 bg-[#06080d] border-b border-[#182030] flex items-center gap-3 shrink-0">
+    
+    <!-- Left Brand Card (Download Version 1.1) -->
+    <div class="w-64 bg-gradient-to-b from-[#101524] to-[#080b13] border border-cyan-500/30 hover:border-cyan-400/60 rounded-2xl p-2.5 flex items-center gap-3 shadow-lg shadow-cyan-950/40 shrink-0 transition-all duration-300 group">
+      <div class="w-12 h-12 rounded-xl overflow-hidden shadow-xl shadow-cyan-950/80 shrink-0 border border-cyan-400/50 relative bg-gradient-to-br from-[#0c1220] to-[#06080d] p-0.5 group-hover:border-cyan-300 group-hover:shadow-cyan-500/30 transition-all duration-300">
+        <img src="/static/logo_icon.png" alt="Hassan AutoFarm Logo" class="w-full h-full object-contain transform group-hover:scale-110 transition-transform duration-300 drop-shadow-[0_2px_8px_rgba(6,182,212,0.45)]">
+        <div class="absolute inset-0 rounded-xl ring-1 ring-inset ring-cyan-400/30 pointer-events-none"></div>
+      </div>
+      <div class="overflow-hidden">
+        <h1 class="font-extrabold text-sm text-white tracking-wide leading-tight flex items-center gap-1.5">
+          <span>Hassan AutoFarm</span>
+        </h1>
+        <div class="flex items-center gap-1.5 mt-1">
+          <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-cyan-500/15 border border-cyan-400/30 text-cyan-300 text-[10px] font-mono font-bold tracking-tight">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+            Download v1.1
+          </span>
+          <span class="text-[9px] bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 px-1 py-0.5 rounded font-bold uppercase tracking-wider">PRO AI</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right 4 Metrics Cards Grid -->
+    <div class="flex-1 grid grid-cols-4 gap-3">
+      <!-- Metric 1: Videos Farmed -->
+      <div class="bg-[#0e121d] border border-[#182030] rounded-xl p-3 flex items-center justify-between shadow-md">
+        <div class="space-y-0.5">
+          <p class="text-slate-400 text-[10px] font-bold uppercase tracking-wider">VIDEOS FARMED</p>
+          <h2 id="metric-farmed" class="text-xl font-extrabold text-white font-mono tracking-tight">0</h2>
+        </div>
+        <div class="w-9 h-9 rounded-xl bg-[#090c14] border border-[#182030] flex items-center justify-center text-slate-400 shadow-inner">
+          <i data-lucide="film" class="w-4 h-4 text-slate-300"></i>
+        </div>
+      </div>
+
+      <!-- Metric 2: Scraping Engines Status -->
+      <div class="bg-[#0e121d] border border-[#182030] rounded-xl p-3 flex items-center justify-between shadow-md">
+        <div class="space-y-0.5">
+          <p class="text-slate-400 text-[10px] font-bold uppercase tracking-wider">SCRAPING ENGINES</p>
+          <div class="flex items-center gap-1.5 mt-0.5">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0"></span>
+            <h2 id="metric-streams" class="text-xs font-bold text-amber-300 font-mono tracking-tight truncate max-w-[140px]" title="3 Engines Active (Auto Failover)">3 Engines (Auto)</h2>
+          </div>
+        </div>
+        <div class="w-9 h-9 rounded-xl bg-[#090c14] border border-[#182030] flex items-center justify-center text-amber-400 shadow-inner">
+          <i data-lucide="zap" class="w-4 h-4 fill-amber-400 text-amber-400"></i>
+        </div>
+      </div>
+
+      <!-- Metric 3: Storage Saved -->
+      <div class="bg-[#0e121d] border border-[#182030] rounded-xl p-3 flex items-center justify-between shadow-md">
+        <div class="space-y-0.5">
+          <p class="text-slate-400 text-[10px] font-bold uppercase tracking-wider">STORAGE SAVED</p>
+          <h2 id="metric-storage" class="text-xl font-extrabold text-white font-mono tracking-tight">0.0 GB</h2>
+        </div>
+        <div class="w-9 h-9 rounded-xl bg-[#090c14] border border-[#182030] flex items-center justify-center text-pink-400 shadow-inner">
+          <i data-lucide="save" class="w-4 h-4 text-pink-400"></i>
+        </div>
+      </div>
+
+      <!-- Metric 4: Connected Pages -->
+      <div class="bg-[#0e121d] border border-[#182030] rounded-xl p-3 flex items-center justify-between shadow-md">
+        <div class="space-y-0.5">
+          <p class="text-slate-400 text-[10px] font-bold uppercase tracking-wider">CONNECTED PAGES</p>
+          <h2 id="metric-pages" class="text-xl font-extrabold text-white font-mono tracking-tight">0</h2>
+        </div>
+        <div class="w-9 h-9 rounded-xl bg-[#090c14] border border-[#182030] flex items-center justify-center shadow-inner">
+          <span class="w-3.5 h-3.5 rounded-full bg-emerald-500 shadow-[0_0_12px_#10b981]"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAIN LAYOUT BODY (Sidebar + Work Area) -->
+  <div class="flex-1 flex overflow-hidden">
+    <!-- Left Navigation Sidebar -->
+    <aside class="w-56 bg-[#090c14] border-r border-[#182030] flex flex-col justify-between p-3 shrink-0">
+      <div class="space-y-2">
+        <!-- Tab Navigation Menu -->
+        <nav class="space-y-1 text-xs">
+          <button onclick="switchTab('dashboard')" id="nav-btn-dashboard" class="w-full flex items-center gap-2.5 px-3 py-2 rounded-xl text-white font-bold bg-[#182030] border border-[#242f46] shadow-sm shadow-indigo-500/20 transition">
+            <i data-lucide="layout-grid" class="w-4 h-4 text-indigo-400"></i>
+            <span>Dashboard</span>
+          </button>
+          <button onclick="switchTab('scraper')" id="nav-btn-scraper" class="w-full flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-400 hover:text-white hover:bg-[#131826] transition">
+            <i data-lucide="scan" class="w-4 h-4 text-slate-400"></i>
+            <span>Scraper Studio</span>
+          </button>
+          <button onclick="switchTab('ai_video')" id="nav-btn-ai_video" class="w-full flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-400 hover:text-white hover:bg-[#131826] transition">
+            <i data-lucide="video" class="w-4 h-4 text-slate-400"></i>
+            <span>AI Video Studio</span>
+          </button>
+          <button onclick="switchTab('image_anti')" id="nav-btn-image_anti" class="w-full flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-400 hover:text-white hover:bg-[#131826] transition">
+            <i data-lucide="image" class="w-4 h-4 text-slate-400"></i>
+            <span>Image AntiDetect</span>
+          </button>
+          <button onclick="switchTab('cloud_uploader')" id="nav-btn-cloud_uploader" class="w-full flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-400 hover:text-white hover:bg-[#131826] transition">
+            <i data-lucide="cloud-upload" class="w-4 h-4 text-slate-400"></i>
+            <span>Cloud Uploader</span>
+          </button>
+          <button onclick="switchTab('analytics')" id="nav-btn-analytics" class="w-full flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-400 hover:text-white hover:bg-[#131826] transition">
+            <i data-lucide="bar-chart-2" class="w-4 h-4 text-slate-400"></i>
+            <span>Analytics</span>
+          </button>
+          <button onclick="switchTab('settings')" id="nav-btn-settings" class="w-full flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-400 hover:text-white hover:bg-[#131826] transition">
+            <i data-lucide="settings" class="w-4 h-4 text-slate-400"></i>
+            <span>Settings</span>
+          </button>
+        </nav>
+      </div>
+
+      <!-- Left Sidebar Bottom Telemetry -->
+      <div class="bg-[#0e121d] border border-[#182030] rounded-xl p-2.5 space-y-1 text-[10px]">
+        <p class="text-slate-500 font-bold uppercase tracking-wider text-[9px]">SYSTEM TELEMETRY</p>
+        <div class="flex justify-between text-slate-300"><span>Engine:</span> <span id="telemetry-engine" class="text-emerald-400 font-semibold">Online (Ready)</span></div>
+        <div class="flex justify-between text-slate-300"><span>Hardware GPU:</span> <span id="telemetry-gpu" class="text-cyan-400 font-mono">HD 4600 (QSV)</span></div>
+      </div>
+    </aside>
+
+        <!-- CONTENT WORK AREA -->
+        <main class="flex-1 overflow-y-auto p-3 flex flex-col space-y-3 bg-[#06080d]">
+
+          <!-- ============================================== -->
+          <!-- TAB 1: DASHBOARD (Screenshot 1 & Board Match)   -->
+          <!-- ============================================== -->
+          <div id="tab-content-dashboard" class="space-y-3">
+            
+            <!-- Live Processing Queue & Quick Actions (Side-by-Side Dual Column) -->
+            <div class="grid grid-cols-12 gap-3 bg-[#0e121d] border border-[#182030] rounded-xl p-3.5 shadow-md">
+              
+              <!-- Left Column: Live Processing Queue (7 Cols) -->
+              <div class="col-span-6 space-y-2.5 border-r border-[#182030] pr-3">
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-2">
+                    <i data-lucide="settings" class="w-3.5 h-3.5 text-slate-300"></i>
+                    <span class="font-bold text-white text-xs">Live Processing Queue</span>
+                  </div>
+                  <div class="flex items-center gap-1.5 bg-[#090c14] p-0.5 rounded-lg border border-[#182030]">
+                    <button onclick="setQueueMode('single')" id="btn-mode-single" class="px-2 py-0.5 rounded text-[10px] text-slate-400 hover:text-white">Single Video</button>
+                    <button onclick="setQueueMode('batch')" id="btn-mode-batch" class="px-2 py-0.5 rounded text-[10px] bg-emerald-600 text-white font-bold flex items-center gap-1">
+                      <i data-lucide="list-checks" class="w-3 h-3"></i>
+                      <span>Active Progress</span>
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Stream 1 -->
+                <div class="space-y-1">
+                  <div class="flex items-center justify-between text-[11px] font-mono">
+                    <span class="text-slate-300 flex items-center gap-2">
+                      <span class="text-indigo-400 font-bold">1 &#9658;</span>
+                      <span id="stream1-text" class="text-slate-400">Idle &mdash; waiting for task</span>
+                    </span>
+                    <span id="stream1-percent" class="text-slate-400 font-bold">0%</span>
+                  </div>
+                  <div class="w-full bg-[#090c14] h-1.5 rounded-full overflow-hidden border border-[#182030]">
+                    <div id="stream1-bar" class="bg-indigo-500 h-full w-[0%] transition-all duration-300"></div>
+                  </div>
+                </div>
+
+                <!-- Stream 2 -->
+                <div class="space-y-1">
+                  <div class="flex items-center justify-between text-[11px] font-mono">
+                    <span class="text-slate-300 flex items-center gap-2">
+                      <span class="text-blue-400 font-bold">2 &#9658;</span>
+                      <span id="stream2-text" class="text-slate-400">Idle &mdash; waiting for task</span>
+                    </span>
+                    <span id="stream2-percent" class="text-slate-400 font-bold">0%</span>
+                  </div>
+                  <div class="w-full bg-[#090c14] h-1.5 rounded-full overflow-hidden border border-[#182030]">
+                    <div id="stream2-bar" class="bg-blue-500 h-full w-[0%] transition-all duration-300"></div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Right Column: Quick Actions (6 Cols) -->
+              <div class="col-span-6 space-y-3 flex flex-col justify-between pl-1">
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-1.5 text-white font-bold text-xs">
+                    <i data-lucide="zap" class="w-3.5 h-3.5 text-amber-400 fill-amber-400"></i>
+                    <span>Quick Actions</span>
+                  </div>
+                  <div class="flex items-center gap-2">
+                    <span class="text-slate-400 text-xs">24/7 Autopilot</span>
+                    <label class="switch">
+                      <input type="checkbox" id="autopilot-toggle" checked onchange="toggleAutopilot(this.checked)">
+                      <span class="slider"></span>
+                    </label>
+                  </div>
+                </div>
+
+                <!-- Row 1: Action Buttons (Latest 2026 SaaS Style) -->
+                <div class="grid grid-cols-3 gap-2.5">
+                  <button onclick="handleFarming('start')" class="group relative overflow-hidden bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-600 hover:from-emerald-500 hover:to-teal-500 text-white font-extrabold py-2 px-3 rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-emerald-950/40 hover:shadow-emerald-500/30 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 text-xs border border-emerald-400/20 cursor-pointer">
+                    <i data-lucide="zap" class="w-3.5 h-3.5 fill-white group-hover:scale-110 transition-transform"></i>
+                    <span class="tracking-wide">START FARMING</span>
+                  </button>
+                  <button onclick="handleFarming('download')" class="group relative overflow-hidden bg-gradient-to-r from-indigo-600 via-cyan-600 to-indigo-600 hover:from-indigo-500 hover:to-cyan-500 text-white font-extrabold py-2 px-3 rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-indigo-950/50 hover:shadow-cyan-500/30 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 text-xs border border-cyan-400/30 cursor-pointer">
+                    <i data-lucide="download" class="w-3.5 h-3.5 group-hover:animate-bounce"></i>
+                    <span class="tracking-wide">DOWNLOAD</span>
+                    <span class="text-[9px] bg-white/20 border border-white/30 px-1.5 py-0.2 rounded font-mono font-bold">v1.1</span>
+                  </button>
+                  <button onclick="handleFarming('stop_all')" class="group relative overflow-hidden bg-gradient-to-r from-rose-600 to-red-600 hover:from-rose-500 hover:to-red-500 text-white font-extrabold py-2 px-3 rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-rose-950/40 hover:shadow-rose-500/30 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 text-xs border border-rose-400/20 cursor-pointer">
+                    <i data-lucide="disc" class="w-3.5 h-3.5 group-hover:scale-110 transition-transform"></i>
+                    <span class="tracking-wide">STOP ALL</span>
+                  </button>
+                </div>
+
+                <!-- Row 2: Parameters Bar (Order, Limit, Scraping & DL Engine v1.1) -->
+                <div class="flex items-center justify-between gap-2 bg-[#090d18]/90 backdrop-blur-md border border-[#1e273d] rounded-xl px-3 py-1.5 overflow-x-auto scrollbar-none shadow-inner">
+                  <!-- Order Selector -->
+                  <div class="flex items-center gap-1.5 text-xs shrink-0">
+                    <span class="text-slate-400 text-[11px] font-semibold">Order:</span>
+                    <select id="autopilot-speed" class="bg-transparent text-slate-200 text-xs font-semibold focus:outline-none cursor-pointer">
+                      <option value="Oldest" class="bg-[#090c14] text-slate-200" selected>Oldest</option>
+                      <option value="Newest" class="bg-[#090c14] text-slate-200">Newest</option>
+                      <option value="Random" class="bg-[#090c14] text-slate-200">Random</option>
+                    </select>
+                  </div>
+
+                  <div class="h-4 w-px bg-[#1e273d] shrink-0"></div>
+
+                  <!-- Limit Input -->
+                  <div class="flex items-center gap-1.5 text-xs shrink-0">
+                    <span class="text-slate-400 text-[11px] font-semibold">Limit:</span>
+                    <input type="number" id="download-batch-limit" value="3" min="1" max="5000" class="bg-[#0e1424] border border-[#242f46] rounded-lg w-12 py-0.5 text-center text-white text-xs font-bold focus:outline-none focus:border-cyan-500 transition" title="Videos per creator to download">
+                  </div>
+
+                  <div class="h-4 w-px bg-[#1e273d] shrink-0"></div>
+
+                  <!-- Engine Selector (Multi-Engine with Automatic Failover) -->
+                  <div class="flex items-center gap-1.5 text-xs shrink-0" title="Scraping Engine with Auto Failover: Engine 2 ya 3 pehle, Engine 1 last py (2 ➔ 3 ➔ 1)">
+                    <i data-lucide="cpu" class="w-3.5 h-3.5 text-emerald-400"></i>
+                    <span class="text-slate-400 text-[11px] font-semibold">Engine:</span>
+                    <select id="scraping-engine-mode" onchange="syncScrapingEngine(this.value)" class="bg-transparent text-emerald-400 text-xs font-bold focus:outline-none cursor-pointer">
+                      <option value="auto" class="bg-[#090c14] text-emerald-400" selected>⚡ Auto (2 ➔ 3 ➔ 1)</option>
+                      <option value="engine_2" class="bg-[#090c14] text-purple-400">Engine 2 (yt-dlp Core)</option>
+                      <option value="engine_3" class="bg-[#090c14] text-amber-400">Engine 3 (Resilient Mirror)</option>
+                      <option value="engine_1" class="bg-[#090c14] text-cyan-400">Engine 1 (Direct Web - Last)</option>
+                    </select>
+                  </div>
+
+                  <div class="h-4 w-px bg-[#1e273d] shrink-0"></div>
+
+                  <!-- 3 Download Engines v1.1 Suite -->
+                  <div class="flex items-center gap-1.5 text-xs shrink-0 bg-[#0e1424]/80 border border-cyan-500/20 px-2 py-0.5 rounded-lg" title="Download Version 1.1: 3 Multi-Engine Pipelines">
+                    <i data-lucide="download-cloud" class="w-3.5 h-3.5 text-cyan-400"></i>
+                    <span class="text-cyan-400 text-[10px] font-mono font-bold">DL v1.1:</span>
+                    <select id="download-engine-mode" onchange="syncDownloadEngine(this.value)" class="bg-transparent text-cyan-300 text-xs font-bold focus:outline-none cursor-pointer">
+                      <option value="fast" class="bg-[#090c14] text-amber-400">⚡ Turbo CDN</option>
+                      <option value="full_hd" class="bg-[#090c14] text-cyan-400" selected>💎 Full HD 1080p</option>
+                      <option value="4k" class="bg-[#090c14] text-purple-400">🔥 4K Ultra HD</option>
+                    </select>
+                  </div>
+
+                  <div class="h-4 w-px bg-[#1e273d] shrink-0"></div>
+
+                  <!-- Video Parts Selector (Cuts into Part 1, Part 2...) -->
+                  <div class="flex items-center gap-1.5 text-xs shrink-0" title="Cut Video into Separate Parts on Download (e.g. Part 1, Part 2, Part 3)">
+                    <i data-lucide="scissors" class="w-3.5 h-3.5 text-amber-400"></i>
+                    <span class="text-[11px] text-amber-400 font-bold">Parts:</span>
+                    <select id="download-split-duration" onchange="syncSplitDuration(this.value)" class="bg-transparent text-amber-300 text-xs font-bold focus:outline-none cursor-pointer">
+                      <option value="Off" class="bg-[#090c14] text-slate-300">Off (Full Video)</option>
+                      <option value="2 Parts" class="bg-[#090c14] text-amber-400">2 Parts (Part 1, 2)</option>
+                      <option value="3 Parts" class="bg-[#090c14] text-amber-400">3 Parts (Part 1, 2, 3)</option>
+                      <option value="4 Parts" class="bg-[#090c14] text-amber-400">4 Parts (Part 1-4)</option>
+                      <option value="5 Parts" class="bg-[#090c14] text-amber-400">5 Parts (Part 1-5)</option>
+                      <option value="30s" class="bg-[#090c14] text-amber-400">30s Parts (Shorts)</option>
+                      <option value="60s" class="bg-[#090c14] text-amber-400">60s Parts (Reels)</option>
+                      <option value="90s" class="bg-[#090c14] text-amber-400">90s Parts (TikTok)</option>
+                      <option value="120s" class="bg-[#090c14] text-amber-400">2 min Parts</option>
+                      <option value="180s" class="bg-[#090c14] text-amber-400">3 min Parts</option>
+                      <option value="custom" class="bg-[#090c14] text-cyan-400 font-bold">Custom...</option>
+                    </select>
+                    <input type="text" id="custom-parts-input" oninput="syncCustomPartsInput(this.value)" placeholder="e.g. 45s or 6 parts" class="hidden bg-[#0e121d] border border-amber-500/50 rounded-lg px-2 py-0.5 text-white text-xs font-medium w-28 focus:outline-none focus:border-amber-400 placeholder-slate-500" title="Enter custom seconds (e.g. 45s, 15s) or parts count (e.g. 6 parts, 10 parts)">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+        <!-- Search & Filter Controls (Matching Screenshot Parity) -->
+        <div class="flex items-center justify-between gap-3 bg-[#0e121d] border border-[#182030] rounded-xl p-2.5">
+          <div class="flex items-center gap-2 flex-1 max-w-md">
+            <div class="relative w-full">
+              <i data-lucide="search" class="w-3.5 h-3.5 absolute left-3 top-2.5 text-slate-500"></i>
+              <input type="text" id="channel-search" oninput="filterChannels()" placeholder="Search creators by name or platform..." class="w-full bg-[#090c14] border border-[#182030] rounded-lg pl-8 pr-3 py-1.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-cyan-500">
+            </div>
+          </div>
+          <div class="flex items-center gap-2">
+            <!-- Platform Dropdown with icons -->
+            <select id="platform-filter" onchange="filterChannels()" class="bg-[#090c14] border border-[#182030] rounded-lg px-3 py-1.5 text-slate-300 text-xs font-semibold focus:outline-none cursor-pointer">
+              <option value="all">&#127760; All Platforms</option>
+              <option value="youtube">&#9658; YouTube</option>
+              <option value="instagram">&#128247; Instagram</option>
+              <option value="tiktok">&#127925; TikTok</option>
+              <option value="facebook">&#128101; Facebook</option>
+            </select>
+            
+            <!-- Profile ID Dropdown (Matching Screenshot Exactly) -->
+            <select id="profile-id-filter" onchange="filterChannels()" class="bg-[#090c14] border border-[#182030] rounded-lg px-3 py-1.5 text-slate-300 text-xs font-semibold focus:outline-none cursor-pointer">
+              <option value="all">&#127380; All Profile IDs</option>
+              <option value="unassigned">Standalone / Unassigned</option>
+            </select>
+
+            <!-- Sort Dropdown (Matching Screenshot Exactly) -->
+            <select id="sort-filter" onchange="filterChannels()" class="bg-[#090c14] border border-[#182030] rounded-lg px-3 py-1.5 text-slate-300 text-xs font-semibold focus:outline-none cursor-pointer">
+              <option value="default">Default Sort</option>
+              <option value="name">Name (A-Z)</option>
+              <option value="platform">Platform</option>
+              <option value="profile_id">Profile ID</option>
+              <option value="queue_size">Queue Size</option>
+              <option value="downloads">Downloads</option>
+            </select>
+
+            <!-- Pagination Controls -->
+            <div class="flex items-center gap-1.5 text-[11px] text-slate-300 ml-2">
+              <button onclick="changePage(-1)" class="px-2.5 py-1 bg-[#090c14] border border-[#182030] hover:border-slate-500 rounded text-slate-300 hover:text-white font-bold flex items-center gap-1 transition">
+                <span>&#9664; Prev</span>
+              </button>
+              <span id="page-indicator" class="px-2 text-slate-300 font-mono text-xs">Page 1/6 (263)</span>
+              <button onclick="changePage(1)" class="px-2.5 py-1 bg-[#090c14] border border-[#182030] hover:border-slate-500 rounded text-slate-300 hover:text-white font-bold flex items-center gap-1 transition">
+                <span>Next &#9654;</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Channels / Creator Mapping Table (Restored SORT and LIMIT Columns) -->
+        <div class="bg-[#0e121d] border border-[#182030] rounded-xl overflow-visible shadow-lg">
+          <table class="w-full text-left text-xs">
+            <thead class="bg-[#090c14] text-slate-400 uppercase text-[10px] border-b border-[#182030] tracking-wider">
+              <tr>
+                <th class="p-2.5 w-8 text-center"><input type="checkbox" id="select-all-channels" onchange="toggleAllChannels(this)"></th>
+                <th class="p-2.5">CREATOR / PROFILE MAPPING</th>
+                <th class="p-2.5 text-center">CAPS</th>
+                <th class="p-2.5 text-center">PLATFORM</th>
+                <th class="p-2.5 text-center">SORT</th>
+                <th class="p-2.5 text-center">LIMIT</th>
+                <th class="p-2.5 text-center">QUEUE</th>
+                <th class="p-2.5 text-center">DONE</th>
+                <th class="p-2.5 text-center">META AI</th>
+                <th class="p-2.5 text-center">MONETIZED</th>
+                <th class="p-2.5 text-center">ACTIONS</th>
+              </tr>
+            </thead>
+            <tbody id="channels-table-body" class="divide-y divide-[#182030] text-slate-300 font-medium">
+              <!-- Dynamically populated -->
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+
+      <!-- ============================================== -->
+      <!-- TAB 2: SCRAPER STUDIO (Screenshot 2)           -->
+      <!-- ============================================== -->
+      <div id="tab-content-scraper" class="hidden space-y-3">
+        <div class="grid grid-cols-2 gap-3">
+          <!-- Card 1: Add Profile / Video URL -->
+          <div class="bg-[#0e121d] border border-[#182030] rounded-xl p-4 space-y-3">
+            <div class="flex items-center gap-2 text-white font-bold text-sm">
+              <i data-lucide="plus" class="w-4 h-4 text-cyan-400"></i>
+              <span>Add Profile / Video URL</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <input type="text" id="new-channel-input" onkeypress="if(event.key==='Enter') addNewChannel()" placeholder="Paste Profile, Channel, or Video URL..." class="flex-1 bg-[#090c14] border border-[#182030] rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-cyan-500">
+              <button onclick="addNewChannel()" class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold px-4 py-2 rounded-lg transition shadow-md shadow-indigo-600/30">
+                Add Channel
+              </button>
+            </div>
+            <div class="grid grid-cols-4 gap-2.5 pt-1">
+              <button onclick="openModal('modal-add-id')" class="bg-indigo-600/60 hover:bg-indigo-600 border border-indigo-500/60 p-2.5 rounded-xl flex items-center justify-center gap-1.5 text-xs text-white font-bold transition">
+                <i data-lucide="user-plus" class="w-3.5 h-3.5"></i>
+                <span>Add by ix Profile ID</span>
+              </button>
+              <button onclick="openModal('modal-batch-import')" class="bg-[#090c14] border border-[#182030] hover:border-amber-500 p-2.5 rounded-xl flex items-center justify-center gap-1.5 text-xs text-amber-300 font-semibold transition">
+                <i data-lucide="folder-plus" class="w-3.5 h-3.5 text-amber-400"></i>
+                <span>Batch Import URLs</span>
+              </button>
+              <button onclick="openProxyModal()" class="bg-[#090c14] border border-[#182030] hover:border-amber-500 p-2.5 rounded-xl flex items-center justify-center gap-1.5 text-xs text-amber-300 font-semibold transition">
+                <i data-lucide="lock" class="w-3.5 h-3.5 text-amber-400"></i>
+                <span>Proxy Settings</span>
+              </button>
+              <button onclick="exportCreatorsList()" class="bg-[#090c14] border border-[#182030] hover:border-cyan-500 p-2.5 rounded-xl flex items-center justify-center gap-1.5 text-xs text-slate-300 font-semibold transition">
+                <i data-lucide="file-output" class="w-3.5 h-3.5 text-cyan-400"></i>
+                <span>Export List</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Card 2: Scraping Engine & Session Control -->
+          <div class="bg-[#0e121d] border border-[#182030] rounded-xl p-4 space-y-3">
+            <div class="flex items-center justify-between border-b border-[#182030] pb-2">
+              <div class="flex items-center gap-2 text-white font-bold text-sm">
+                <i data-lucide="shield" class="w-4 h-4 text-emerald-400"></i>
+                <span>Multi-Engine Scraping Suite (Auto-Failover)</span>
+              </div>
+              <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-bold">3 ENGINES ACTIVE</span>
+            </div>
+            
+            <!-- Engine Selection & Mode -->
+            <div class="flex items-center justify-between">
+              <div class="space-y-0.5">
+                <span class="text-slate-200 text-xs font-semibold">Active Scraping Mode:</span>
+                <p class="text-slate-500 text-[10px]">Auto Failover (Engine 2 ➔ Engine 3 ➔ Engine 1 ➔ Cache)</p>
+              </div>
+              <select id="studio-scraping-engine" onchange="syncScrapingEngine(this.value)" class="bg-[#090c14] border border-[#182030] rounded-lg px-3 py-1.5 text-xs text-emerald-400 font-bold focus:outline-none">
+                <option value="auto" selected>⚡ Auto Failover (2 ➔ 3 ➔ 1 ➔ DB)</option>
+                <option value="engine_2">Engine 2 (yt-dlp Core Deep Extractor)</option>
+                <option value="engine_3">Engine 3 (Resilient Mobile / Search Mirror)</option>
+                <option value="engine_1">Engine 1 (Direct Web / SSR - Last Fallback)</option>
+              </select>
+            </div>
+
+            <!-- 3 Engines Architecture Badges -->
+            <div class="grid grid-cols-3 gap-2 pt-1 text-[11px]">
+              <div class="bg-[#090c14] border border-[#182030] rounded-lg p-2 space-y-1">
+                <div class="flex items-center gap-1.5 text-purple-400 font-bold text-xs">
+                  <span class="w-1.5 h-1.5 rounded-full bg-purple-400"></span>
+                  <span>Engine 2 (Primary)</span>
+                </div>
+                <p class="text-slate-400 text-[10px] leading-tight">yt-dlp Core Extractor with cookies & custom headers</p>
+              </div>
+              <div class="bg-[#090c14] border border-[#182030] rounded-lg p-2 space-y-1">
+                <div class="flex items-center gap-1.5 text-amber-400 font-bold text-xs">
+                  <span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
+                  <span>Engine 3 (Resilient)</span>
+                </div>
+                <p class="text-slate-400 text-[10px] leading-tight">Mobile Safari SSR & targeted search queries mirror</p>
+              </div>
+              <div class="bg-[#090c14] border border-[#182030] rounded-lg p-2 space-y-1">
+                <div class="flex items-center gap-1.5 text-cyan-400 font-bold text-xs">
+                  <span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
+                  <span>Engine 1 (Last Fallback)</span>
+                </div>
+                <p class="text-slate-400 text-[10px] leading-tight">Direct Web SSR & Urlebird mirror (&lt;0.8s, bot-proof)</p>
+              </div>
+            </div>
+
+            <div class="flex items-center justify-between pt-1 border-t border-[#182030]">
+              <span class="text-slate-400 text-xs">Date Cutoff Filter:</span>
+              <div class="flex items-center gap-2">
+                <input type="text" id="cutoff-date-input" placeholder="YYYYMMDD" class="bg-[#090c14] border border-[#182030] rounded px-2.5 py-1 text-white text-xs w-32 text-center font-mono focus:outline-none focus:border-emerald-500">
+                <button onclick="setCutoffFilter()" class="bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-3 py-1 rounded text-xs transition cursor-pointer">Set Cutoff</button>
+              </div>
+            </div>
+            <div class="flex items-center justify-between pt-1">
+              <div class="flex items-center gap-2">
+                <span class="text-slate-400 text-xs">Background Scraping (Headless)</span>
+                <label class="switch">
+                  <input type="checkbox" id="headless-toggle" checked onchange="showToast('Headless background scraping updated.')">
+                  <span class="slider"></span>
+                </label>
+              </div>
+              <button onclick="startLoginSession()" class="bg-[#090c14] border border-[#182030] text-amber-300 hover:text-white px-3 py-1.5 rounded-lg text-xs flex items-center gap-1.5 hover:border-amber-500 transition">
+                <i data-lucide="lock" class="w-3.5 h-3.5 text-amber-400"></i>
+                <span>Login & Save Session</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card: 3 Download Engines Suite (Download Version 1.1) -->
+        <div class="bg-[#0e121d] border border-[#182030] rounded-xl p-4 space-y-3 shadow-md">
+          <div class="flex items-center justify-between border-b border-[#182030] pb-2">
+            <div class="flex items-center gap-2 text-white font-bold text-sm">
+              <i data-lucide="download-cloud" class="w-4 h-4 text-cyan-400"></i>
+              <span>3 Download Engines Suite &bull; <strong class="text-cyan-300 font-mono text-xs">Download Version 1.1</strong></span>
+            </div>
+            <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 font-bold flex items-center gap-1">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+              v1.1 ENGINES READY
+            </span>
+          </div>
+          
+          <!-- Download Engine Selection & Mode -->
+          <div class="flex items-center justify-between">
+            <div class="space-y-0.5">
+              <span class="text-slate-200 text-xs font-semibold">Active Download Engine:</span>
+              <p class="text-slate-500 text-[10px]">High-performance stream retrieval with aria2c multi-thread acceleration</p>
+            </div>
+            <select id="studio-download-engine" onchange="syncDownloadEngine(this.value)" class="bg-[#090c14] border border-[#182030] rounded-lg px-3 py-1.5 text-xs text-cyan-400 font-bold focus:outline-none">
+              <option value="fast">⚡ Engine 1: Fast (Turbo CDN & aria2c)</option>
+              <option value="full_hd" selected>💎 Engine 2: Full HD (1080p 60fps - Recommended)</option>
+              <option value="4k">🔥 Engine 3: 4K (Ultra HD 2160p Studio Master)</option>
+            </select>
+          </div>
+
+          <!-- 3 Download Engines Architecture Badges -->
+          <div class="grid grid-cols-3 gap-2 pt-1 text-[11px]">
+            <div class="bg-[#090c14] border border-[#182030] rounded-lg p-2.5 space-y-1">
+              <div class="flex items-center gap-1.5 text-amber-400 font-bold text-xs">
+                <span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
+                <span>Engine 1: Fast Turbo</span>
+              </div>
+              <p class="text-slate-400 text-[10px] leading-tight">16-thread aria2c multi-connection acceleration & direct CDN stream (&lt;3s per video)</p>
+            </div>
+            <div class="bg-[#090c14] border border-[#182030] rounded-lg p-2.5 space-y-1">
+              <div class="flex items-center gap-1.5 text-cyan-400 font-bold text-xs">
+                <span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
+                <span>Engine 2: Full HD (1080p)</span>
+              </div>
+              <p class="text-slate-400 text-[10px] leading-tight">Crisp 1080p 60fps high bitrate stream with watermark-free master audio (Ideal for Reels/Shorts)</p>
+            </div>
+            <div class="bg-[#090c14] border border-[#182030] rounded-lg p-2.5 space-y-1">
+              <div class="flex items-center gap-1.5 text-purple-400 font-bold text-xs">
+                <span class="w-1.5 h-1.5 rounded-full bg-purple-400"></span>
+                <span>Engine 3: 4K Ultra HD</span>
+              </div>
+              <p class="text-slate-400 text-[10px] leading-tight">2160p / 1440p studio master resolution, highest uncompressed stream available from source</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3: Dedicated Production Tools Grid -->
+        <div class="bg-[#0e121d] border border-[#182030] rounded-xl p-4 space-y-3">
+          <div class="flex items-center gap-2 text-white font-bold text-sm">
+            <i data-lucide="wrench" class="w-4 h-4 text-purple-400"></i>
+            <span>Dedicated Production Tools</span>
+          </div>
+          <div class="grid grid-cols-4 gap-3">
+            <button onclick="openModal('modal-single-video')" class="bg-[#090c14] border border-[#182030] hover:border-cyan-500 p-3 rounded-xl flex items-center justify-center gap-2 text-slate-200 font-semibold transition">
+              <i data-lucide="video" class="w-4 h-4 text-cyan-400"></i>
+              <span>Single Video Tool</span>
+            </button>
+            <button onclick="openModal('modal-direct-batch')" class="bg-[#090c14] border border-[#182030] hover:border-amber-500 p-3 rounded-xl flex items-center justify-center gap-2 text-slate-200 font-semibold transition">
+              <i data-lucide="zap" class="w-4 h-4 text-amber-400"></i>
+              <span>Direct Links Batch</span>
+            </button>
+            <button onclick="openWarmerModal()" class="bg-[#090c14] border border-[#182030] hover:border-orange-500 p-3 rounded-xl flex items-center justify-center gap-2 text-slate-200 font-semibold transition">
+              <i data-lucide="flame" class="w-4 h-4 text-orange-400"></i>
+              <span>ID Activator</span>
+            </button>
+            <button onclick="switchTab('image_anti')" class="bg-indigo-900/40 border border-indigo-600/60 hover:border-indigo-400 p-3 rounded-xl flex items-center justify-center gap-2 text-indigo-300 font-bold shadow-md shadow-indigo-500/20 transition">
+              <i data-lucide="image" class="w-4 h-4 text-indigo-400"></i>
+              <span>Image AntiDetect</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================== -->
+      <!-- TAB 3: AI VIDEO STUDIO (Screenshot 3)          -->
+      <!-- ============================================== -->
+      <div id="tab-content-ai_video" class="hidden space-y-3">
+        <div class="grid grid-cols-2 gap-3">
+          
+          <!-- Column 1: Copyright Bypass 5.0 -->
+          <div class="bg-[#0e121d] border border-[#182030] rounded-xl p-4 space-y-3.5">
+            <div class="flex items-center gap-2 text-white font-bold text-sm border-b border-[#182030] pb-2">
+              <i data-lucide="shield" class="w-4 h-4 text-cyan-400"></i>
+              <span>Copyright Bypass 5.0 & Video Filters</span>
+            </div>
+
+            <div class="space-y-3">
+              <div class="flex items-center justify-between">
+                <span class="text-slate-300 text-xs">FB Copyright Bypass 5.0</span>
+                <label class="switch">
+                  <input type="checkbox" id="v-fb-bypass" checked onchange="saveVideoSettings()">
+                  <span class="slider"></span>
+                </label>
+              </div>
+
+              <div class="flex items-center justify-between">
+                <span class="text-slate-300 text-xs">PiP (Secondary Video) Overlay</span>
+                <label class="switch">
+                  <input type="checkbox" id="v-pip" onchange="saveVideoSettings()">
+                  <span class="slider"></span>
+                </label>
+              </div>
+
+              <div class="flex items-center justify-between">
+                <span class="text-slate-300 text-xs">Fallback to Rare Encode</span>
+                <label class="switch">
+                  <input type="checkbox" id="v-rare" onchange="saveVideoSettings()">
+                  <span class="slider"></span>
+                </label>
+              </div>
+
+              <div class="flex items-center justify-between">
+                <span class="text-slate-300 text-xs font-semibold text-purple-300">ULTRA GHOST Bypass</span>
+                <label class="switch">
+                  <input type="checkbox" id="v-ghost" onchange="saveVideoSettings()">
+                  <span class="slider"></span>
+                </label>
+              </div>
+
+              <div class="flex items-center justify-between">
+                <span class="text-slate-400 text-xs">Encoding Quality:</span>
+                <select id="v-quality" onchange="saveVideoSettings()" class="bg-[#090c14] border border-[#182030] rounded px-2.5 py-1 text-amber-300 font-semibold text-xs">
+                  <option>&star; High Quality (Crisp 1080p 60fps)</option>
+                  <option>&star; Balanced (720p 60fps)</option>
+                  <option>&star; Fast Draft (480p 30fps)</option>
+                </select>
+              </div>
+
+              <div class="flex items-center justify-between pt-1 border-t border-[#182030]">
+                <span class="text-red-400 text-xs">No Editing (Risky for Facebook & Not Recommended)</span>
+                <label class="switch">
+                  <input type="checkbox" id="v-raw" onchange="saveVideoSettings()">
+                  <span class="slider"></span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Column 2: Audio Ghost & Sound Bypass -->
+          <div class="bg-[#0e121d] border border-[#182030] rounded-xl p-4 space-y-3.5">
+            <div class="flex items-center gap-2 text-white font-bold text-sm border-b border-[#182030] pb-2">
+              <i data-lucide="music" class="w-4 h-4 text-purple-400"></i>
+              <span>Audio Ghost & Sound Bypass</span>
+            </div>
+
+            <div class="space-y-3">
+              <div class="flex items-center justify-between">
+                <span class="text-slate-300 text-xs">Audio Ghost (Anti-Copyright Sound)</span>
+                <label class="switch">
+                  <input type="checkbox" id="v-audio-ghost" onchange="saveVideoSettings()">
+                  <span class="slider"></span>
+                </label>
+              </div>
+
+              <div class="flex items-center justify-between">
+                <span class="text-slate-400 text-xs">Audio Profile:</span>
+                <select id="v-audio-profile" onchange="saveVideoSettings()" class="bg-[#090c14] border border-[#182030] rounded px-3 py-1 text-slate-300 text-xs w-52">
+                  <option>Auto-Detect</option>
+                  <option>Pitch Shift -0.4st</option>
+                  <option>Sub-Harmonic Resample</option>
+                </select>
+              </div>
+
+              <div class="flex items-center justify-between">
+                <span class="text-slate-300 text-xs">Replace Music (Royalty-Free)</span>
+                <label class="switch">
+                  <input type="checkbox" id="v-replace-music" onchange="saveVideoSettings()">
+                  <span class="slider"></span>
+                </label>
+              </div>
+
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-1.5">
+                  <i data-lucide="scissors" class="w-3.5 h-3.5 text-amber-400"></i>
+                  <span class="text-slate-300 text-xs font-medium">Cut into Video Parts (Part 1, Part 2...):</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <select id="v-split" onchange="syncSplitFromVideoStudio(this.value)" class="bg-[#090c14] border border-[#182030] rounded px-3 py-1 text-amber-400 text-xs font-semibold">
+                    <option value="Off">Off (Full Video)</option>
+                    <option value="2 Parts">2 Parts (Part 1, 2)</option>
+                    <option value="3 Parts">3 Parts (Part 1, 2, 3)</option>
+                    <option value="4 Parts">4 Parts (Part 1-4)</option>
+                    <option value="5 Parts">5 Parts (Part 1-5)</option>
+                    <option value="30s">30s Parts (Shorts)</option>
+                    <option value="60s">60s Parts (Reels)</option>
+                    <option value="90s">90s Parts (TikTok)</option>
+                    <option value="120s">120s Parts (2 min)</option>
+                    <option value="180s">180s Parts (3 min)</option>
+                    <option value="custom">Custom...</option>
+                  </select>
+                  <input type="text" id="v-custom-parts-input" oninput="syncCustomPartsInput(this.value)" placeholder="e.g. 45s or 6 parts" class="hidden bg-[#090c14] border border-amber-500/50 rounded px-2 py-1 text-white text-xs font-medium w-28 focus:outline-none focus:border-amber-400 placeholder-slate-500">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Full Width: Auto-Crop 9:16, AI Captions & Watermarks -->
+        <div class="bg-[#0e121d] border border-[#182030] rounded-xl p-4 space-y-3">
+          <div class="flex items-center gap-2 text-white font-bold text-sm border-b border-[#182030] pb-2">
+            <i data-lucide="crop" class="w-4 h-4 text-amber-400"></i>
+            <span>Auto-Crop 9:16, AI Captions & Watermarks</span>
+          </div>
+
+          <div class="grid grid-cols-3 gap-4">
+            <div class="flex items-center justify-between bg-[#090c14] p-3 rounded-lg border border-[#182030]">
+              <span class="text-slate-300 text-xs font-medium">Auto-Crop to 9:16 (Shorts/Reels)</span>
+              <label class="switch">
+                <input type="checkbox" id="v-crop" onchange="saveVideoSettings()">
+                <span class="slider"></span>
+              </label>
+            </div>
+
+            <div class="flex items-center justify-between bg-[#090c14] p-3 rounded-lg border border-[#182030]">
+              <div class="flex items-center gap-2">
+                <span class="text-slate-400 text-xs">Add Auto Captions</span>
+                <label class="switch"><input type="checkbox" id="v-captions-toggle" onchange="saveVideoSettings()"><span class="slider"></span></label>
+              </div>
+              <select id="v-captions" onchange="saveVideoSettings()" class="bg-[#0e121d] border border-[#182030] rounded px-2 py-1 text-slate-300 text-xs">
+                <option>TikTok Viral</option>
+                <option>MrBeast Yellow/Black</option>
+                <option>Minimalist Glow</option>
+              </select>
+            </div>
+
+            <div class="flex items-center justify-between bg-[#090c14] p-3 rounded-lg border border-[#182030]">
+              <div class="flex items-center gap-2">
+                <span class="text-slate-400 text-xs">Watermark</span>
+                <label class="switch"><input type="checkbox" id="v-watermark-toggle" onchange="saveVideoSettings()"><span class="slider"></span></label>
+                <input type="text" id="v-watermark-text" value="Text (@name)" onchange="saveVideoSettings()" class="bg-[#0e121d] border border-[#182030] rounded px-2 py-0.5 text-xs text-white w-24">
+              </div>
+              <select id="v-watermark-pos" onchange="saveVideoSettings()" class="bg-[#0e121d] border border-[#182030] rounded px-2 py-1 text-slate-300 text-xs">
+                <option>Bottom Right</option>
+                <option>Top Right</option>
+                <option>Floating Center</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================== -->
+      <!-- TAB 4: IMAGE ANTIDETECT (Screenshot 4)         -->
+      <!-- ============================================== -->
+      <div id="tab-content-image_anti" class="hidden space-y-3">
+        <div class="grid grid-cols-2 gap-3">
+          
+          <!-- Column 1: Bulk Image Anti-Detect Studio -->
+          <div class="bg-[#0e121d] border border-[#182030] rounded-xl p-4 space-y-3">
+            <div class="flex items-center justify-between border-b border-[#182030] pb-2">
+              <div class="flex items-center gap-2 text-white font-bold text-sm">
+                <i data-lucide="image" class="w-4 h-4 text-emerald-400"></i>
+                <span>Bulk Image Anti-Detect Studio (45 Layers)</span>
+              </div>
+              <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-950 text-emerald-400 border border-emerald-800">45-Layer Active</span>
+            </div>
+
+            <div class="space-y-2">
+              <div>
+                <label class="text-slate-400 text-xs font-medium">Input Folder (Images):</label>
+                <div class="flex gap-2 mt-1">
+                  <input type="text" id="img-input-folder" placeholder="Select folder containing JPG, PNG, WebP images..." class="flex-1 bg-[#090c14] border border-[#182030] rounded-lg px-3 py-1.5 text-xs text-white focus:outline-none focus:border-rose-500">
+                  <button onclick="browseImageFolder('input')" class="bg-[#131826] hover:bg-[#1f293d] border border-[#242f46] hover:text-white text-slate-300 px-3 py-1.5 rounded-lg text-xs font-semibold transition cursor-pointer flex items-center gap-1">
+                    <i data-lucide="folder" class="w-3.5 h-3.5 text-amber-400"></i>
+                    <span>Browse...</span>
+                  </button>
+                </div>
+              </div>
+
+              <div>
+                <label class="text-slate-400 text-xs font-medium">Output Folder (Processed Images):</label>
+                <div class="flex gap-2 mt-1">
+                  <input type="text" id="img-output-folder" placeholder="Output destination folder..." class="flex-1 bg-[#090c14] border border-[#182030] rounded-lg px-3 py-1.5 text-xs text-white focus:outline-none focus:border-emerald-500">
+                  <button onclick="browseImageFolder('output')" class="bg-[#131826] hover:bg-[#1f293d] border border-[#242f46] hover:text-white text-slate-300 px-3 py-1.5 rounded-lg text-xs font-semibold transition cursor-pointer flex items-center gap-1">
+                    <i data-lucide="folder-check" class="w-3.5 h-3.5 text-emerald-400"></i>
+                    <span>Browse...</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex gap-2 pt-1">
+              <button onclick="processImageBatch()" class="flex-1 bg-rose-600 hover:bg-rose-500 text-white font-extrabold py-2.5 rounded-xl shadow-lg shadow-rose-600/30 flex items-center justify-center gap-2 transition cursor-pointer">
+                <i data-lucide="rocket" class="w-4 h-4"></i>
+                <span>START BATCH PROCESSING (45 LAYERS)</span>
+              </button>
+              <button onclick="openModal('modal-matrix-gui')" class="bg-[#131826] hover:bg-[#1f293d] border border-[#242f46] hover:text-white text-slate-300 px-4 py-2.5 rounded-xl text-xs flex items-center gap-1.5 transition cursor-pointer">
+                <i data-lucide="sliders" class="w-3.5 h-3.5 text-purple-400"></i>
+                <span>Advanced GUI</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Column 2: Custom Logo & Smart Crop Controls -->
+          <div class="bg-[#0e121d] border border-[#182030] rounded-xl p-4 space-y-3">
+            <div class="flex items-center gap-2 text-white font-bold text-sm border-b border-[#182030] pb-2">
+              <i data-lucide="stamp" class="w-4 h-4 text-amber-400"></i>
+              <span>Custom Logo & Smart Crop Controls</span>
+            </div>
+
+            <div>
+              <label class="text-slate-400 text-xs font-medium">Custom Logo / Watermark (PNG):</label>
+              <div class="flex gap-2 mt-1">
+                <input type="text" id="img-watermark-path" placeholder="Optional PNG logo path..." class="flex-1 bg-[#090c14] border border-[#182030] rounded-lg px-3 py-1.5 text-xs text-white focus:outline-none focus:border-amber-500">
+                <button onclick="browseWatermarkFile()" class="bg-[#131826] hover:bg-[#1f293d] border border-[#242f46] text-slate-300 hover:text-white px-3 py-1.5 rounded-lg text-xs font-semibold transition cursor-pointer flex items-center gap-1">
+                  <i data-lucide="image" class="w-3.5 h-3.5 text-cyan-400"></i>
+                  <span>Browse Logo</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-3 gap-2">
+              <div>
+                <label class="text-slate-400 text-[10px]">Position:</label>
+                <select id="img-watermark-pos" class="w-full bg-[#090c14] border border-[#182030] rounded px-2 py-1 text-white text-xs mt-0.5">
+                  <option value="Bottom Right">Bottom Right</option>
+                  <option value="Top Right">Top Right</option>
+                  <option value="Top Left">Top Left</option>
+                </select>
+              </div>
+              <div>
+                <label class="text-slate-400 text-[10px]">Scale:</label>
+                <select id="img-watermark-scale" class="w-full bg-[#090c14] border border-[#182030] rounded px-2 py-1 text-white text-xs mt-0.5">
+                  <option value="15">15%</option>
+                  <option value="25">25%</option>
+                  <option value="10">10%</option>
+                </select>
+              </div>
+              <div>
+                <label class="text-slate-400 text-[10px]">Opacity:</label>
+                <select id="img-watermark-opacity" class="w-full bg-[#090c14] border border-[#182030] rounded px-2 py-1 text-white text-xs mt-0.5">
+                  <option value="85">85%</option>
+                  <option value="100">100%</option>
+                  <option value="60">60%</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-2">
+              <div>
+                <label class="text-slate-400 text-[10px]">Horizontal Crop (px):</label>
+                <input type="number" id="img-crop-h" value="0" class="w-full bg-[#090c14] border border-[#182030] rounded px-2 py-1 text-white text-xs mt-0.5 text-center">
+              </div>
+              <div>
+                <label class="text-slate-400 text-[10px]">Vertical Crop (px):</label>
+                <input type="number" id="img-crop-v" value="0" class="w-full bg-[#090c14] border border-[#182030] rounded px-2 py-1 text-white text-xs mt-0.5 text-center">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom: 45-Layer AntiDetect Engine & Utilities -->
+        <div class="bg-[#0e121d] border border-[#182030] rounded-xl p-4 space-y-3">
+          <div class="flex items-center justify-between border-b border-[#182030] pb-2">
+            <div class="flex items-center gap-2 text-white font-bold text-sm">
+              <i data-lucide="shield-check" class="w-4 h-4 text-emerald-400"></i>
+              <span>45-Layer AntiDetect Engine & Utilities</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-slate-400 text-xs">Auto-Download & Process Images with Videos</span>
+              <label class="switch"><input type="checkbox"><span class="slider"></span></label>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-2 text-[11px] overflow-x-auto py-1 font-mono">
+            <span class="px-2.5 py-1 rounded bg-[#090c14] border border-[#182030] text-emerald-400">Layers 01-10: Shield Active</span>
+            <span class="px-2.5 py-1 rounded bg-[#090c14] border border-[#182030] text-emerald-400">Layers 11-20: Shield Active</span>
+            <span class="px-2.5 py-1 rounded bg-[#090c14] border border-[#182030] text-emerald-400">Layers 21-30: Shield Active</span>
+            <span class="px-2.5 py-1 rounded bg-[#090c14] border border-[#182030] text-emerald-400">Layers 31-40: Shield Active</span>
+            <span class="px-2.5 py-1 rounded bg-[#090c14] border border-[#182030] text-cyan-400 font-bold">Layers 41-45: Ultra Shield</span>
+          </div>
+
+          <div class="flex gap-2 pt-1">
+            <button onclick="runSampleImageTest()" class="bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-4 py-2 rounded-lg text-xs flex items-center gap-2 transition cursor-pointer">
+              <i data-lucide="pencil" class="w-3.5 h-3.5"></i>
+              <span>Run Sample Test</span>
+            </button>
+            <button onclick="cleanImageDatabase()" class="bg-[#090c14] border border-[#182030] hover:border-slate-500 text-slate-300 hover:text-white px-4 py-2 rounded-lg text-xs flex items-center gap-2 transition cursor-pointer">
+              <i data-lucide="sparkles" class="w-3.5 h-3.5 text-amber-400"></i>
+              <span>Clean Image DB</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================== -->
+      <!-- TAB 5: CLOUD UPLOADER & IXBROWSER GATEWAY       -->
+      <!-- ============================================== -->
+      <div id="tab-content-uploader" class="hidden space-y-3">
+        
+        <!-- ROW 1: ixBrowser AntiDetect API Gateway & Auto-Upload Automation (2 Columns) -->
+        <div class="grid grid-cols-12 gap-3">
+          
+          <!-- Col 1 (7 cols): ixBrowser API Connection & Profile Extraction -->
+          <div class="col-span-7 bg-[#0e121d] border border-[#182030] rounded-xl p-4 space-y-3 shadow-md">
+            <div class="flex items-center justify-between border-b border-[#182030] pb-2.5">
+              <div class="flex items-center gap-2 text-white font-bold text-sm">
+                <i data-lucide="globe" class="w-4 h-4 text-cyan-400"></i>
+                <span>ixBrowser AntiDetect API & Facebook Gateway</span>
+              </div>
+              <div id="ixbrowser-status-pill" class="flex items-center gap-1.5 bg-[#090c14] border border-[#182030] px-2.5 py-0.5 rounded-full text-[11px]">
+                <span id="ixbrowser-status-dot" class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
+                <span id="ixbrowser-status-text" class="text-amber-300 font-semibold font-mono">Auto-Detecting</span>
+              </div>
+            </div>
+
+            <!-- API URL & Preset Switcher -->
+            <div class="space-y-1.5">
+              <div class="flex items-center justify-between text-xs">
+                <span class="text-slate-300 font-medium">Local API Endpoint:</span>
+                <div class="flex items-center gap-1.5">
+                  <span class="text-[10px] text-slate-500">Presets:</span>
+                  <button onclick="setIxBrowserPreset('http://127.0.0.1:53200')" class="bg-[#131826] hover:bg-[#1f293d] border border-[#242f46] text-cyan-300 px-2 py-0.5 rounded text-[10px] font-mono transition">ixBrowser (53200)</button>
+                  <button onclick="setIxBrowserPreset('http://127.0.0.1:40000')" class="bg-[#131826] hover:bg-[#1f293d] border border-[#242f46] text-purple-300 px-2 py-0.5 rounded text-[10px] font-mono transition">BitBrowser (40000)</button>
+                </div>
+              </div>
+              <div class="flex gap-2">
+                <input type="text" id="ixbrowser-api-input" value="http://127.0.0.1:53200" placeholder="http://127.0.0.1:53200" class="flex-1 bg-[#090c14] border border-[#182030] rounded-lg px-3 py-1.5 text-white font-mono text-xs focus:outline-none focus:border-cyan-500">
+                <button onclick="testIxBrowserConnection()" class="bg-[#131826] hover:bg-[#1f293d] border border-[#242f46] text-slate-200 hover:text-white px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition cursor-pointer">
+                  <i data-lucide="activity" class="w-3.5 h-3.5 text-slate-400"></i>
+                  <span>Test API</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Fetch & Action Buttons Row -->
+            <div class="grid grid-cols-2 gap-2.5 pt-1">
+              <button onclick="fetchFacebookPages()" id="btn-fetch-pages" class="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-black font-extrabold py-2.5 rounded-xl shadow-lg shadow-cyan-500/20 flex items-center justify-center gap-2 transition cursor-pointer">
+                <i data-lucide="download-cloud" class="w-4 h-4 fill-black"></i>
+                <span id="btn-fetch-pages-text">Fetch Facebook Pages / IDs</span>
+              </button>
+              <button onclick="loadCachedFacebookPages()" class="bg-[#131826] hover:bg-[#182030] border border-[#242f46] hover:border-amber-500 text-amber-300 hover:text-amber-200 py-2.5 rounded-xl font-bold flex items-center justify-center gap-2 transition cursor-pointer">
+                <i data-lucide="layers" class="w-4 h-4 text-amber-400"></i>
+                <span>Load Cached / Demo Profiles</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Col 2 (5 cols): Auto-Upload Settings & Scheduling Automation -->
+          <div class="col-span-5 bg-[#0e121d] border border-[#182030] rounded-xl p-4 space-y-3 shadow-md">
+            <div class="flex items-center justify-between border-b border-[#182030] pb-2.5">
+              <div class="flex items-center gap-2 text-white font-bold text-sm">
+                <i data-lucide="zap" class="w-4 h-4 text-amber-400"></i>
+                <span>Facebook Auto-Upload Automation</span>
+              </div>
+              <span id="fb-autoupload-badge" class="bg-slate-900 border border-slate-700 text-slate-400 text-[10px] px-2 py-0.5 rounded-full font-mono font-bold">OFF</span>
+            </div>
+
+            <!-- Auto-Upload Toggle -->
+            <div class="flex items-center justify-between p-2 rounded-lg bg-[#090c14] border border-[#182030]">
+              <div class="space-y-0.5">
+                <span class="text-white font-bold text-xs">Auto-Upload During Download</span>
+                <p class="text-[10px] text-slate-400">Publish video immediately when download & edit finishes</p>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="fb-autoupload-toggle" onchange="toggleFacebookAutoUpload(this.checked)">
+                <span class="slider"></span>
+              </label>
+            </div>
+
+            <!-- Method & Delay -->
+            <div class="grid grid-cols-2 gap-2 pt-1 text-xs">
+              <div class="space-y-1">
+                <span class="text-slate-400 text-[11px]">Upload Gateway:</span>
+                <select id="fb-upload-method-select" onchange="saveIxBrowserSettings()" class="w-full bg-[#090c14] border border-[#182030] rounded px-2 py-1 text-white text-xs">
+                  <option value="ixBrowser Local API Gateway">ixBrowser API Gateway</option>
+                  <option value="Meta Reels Graph API">Meta Graph API v19</option>
+                  <option value="AntiDetect Headless Proxy">Headless Proxy</option>
+                </select>
+              </div>
+              <div class="space-y-1">
+                <span class="text-slate-400 text-[11px]">Interval Delay:</span>
+                <div class="flex items-center gap-1.5">
+                  <input type="number" id="fb-upload-gap-input" value="5" min="1" max="60" onchange="saveIxBrowserSettings()" class="w-16 bg-[#090c14] border border-[#182030] rounded py-1 text-center text-white text-xs">
+                  <span class="text-slate-500 text-xs">sec gap</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Auto-First Comment -->
+            <div class="pt-1 flex items-center gap-2">
+              <input type="checkbox" id="fb-first-comment-toggle" checked onchange="saveIxBrowserSettings()" class="rounded bg-[#090c14] border-slate-700 text-indigo-500">
+              <span class="text-slate-300 text-xs">Auto-Pin Viral First Comment</span>
+              <input type="text" id="fb-first-comment-text" value="Would you have reacted the same way?" onchange="saveIxBrowserSettings()" placeholder="Pinned first comment..." class="flex-1 bg-[#090c14] border border-[#182030] rounded px-2 py-0.5 text-white text-[11px]">
+            </div>
+          </div>
+        </div>
+
+        <!-- ROW 2: Connected Facebook Pages Table & Folder Mapping (Full Width) -->
+        <div class="bg-[#0e121d] border border-[#182030] rounded-xl p-4 space-y-3 shadow-md">
+          <div class="flex items-center justify-between border-b border-[#182030] pb-2.5">
+            <div class="flex items-center gap-2.5">
+              <div class="w-7 h-7 rounded-lg bg-blue-950/60 border border-blue-800 flex items-center justify-center text-blue-400">
+                <i data-lucide="facebook" class="w-4 h-4"></i>
+              </div>
+              <div>
+                <h3 class="text-white font-bold text-xs">Connected Facebook Pages & AntiDetect Profile Mapping</h3>
+                <p class="text-[10px] text-slate-400">Map specific creator video folders to target Facebook Pages</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-[11px] text-slate-400 font-mono">Total Pages: <strong id="fb-table-total-count" class="text-emerald-400">0</strong></span>
+              <button onclick="fetchFacebookPages()" class="bg-[#131826] hover:bg-[#182030] border border-[#242f46] text-cyan-300 px-2.5 py-1 rounded text-xs font-semibold flex items-center gap-1 transition cursor-pointer" title="Refresh Facebook Pages from ixBrowser">
+                <i data-lucide="refresh-cw" class="w-3 h-3"></i>
+                <span>Refresh</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Connected Pages Table -->
+          <div class="overflow-x-auto max-h-56 border border-[#182030] rounded-lg">
+            <table class="w-full text-left text-xs border-collapse">
+              <thead class="bg-[#090c14] text-slate-400 text-[10px] uppercase font-bold sticky top-0 border-b border-[#182030]">
+                <tr>
+                  <th class="p-2.5">Profile ID</th>
+                  <th class="p-2.5">Facebook Page Name</th>
+                  <th class="p-2.5">Page ID</th>
+                  <th class="p-2.5">Followers / Category</th>
+                  <th class="p-2.5">Mapped Creator Folder</th>
+                  <th class="p-2.5">Status</th>
+                  <th class="p-2.5 text-right">Action</th>
+                </tr>
+              </thead>
+              <tbody id="connected-facebook-pages-tbody" class="divide-y divide-[#182030] font-mono text-[11px]">
+                <!-- Populated dynamically via renderConnectedFacebookPages() -->
+                <tr>
+                  <td colspan="7" class="p-4 text-center text-slate-500">
+                    Click "Fetch Facebook Pages / IDs" above to load profiles from ixBrowser.
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- ROW 3: Ready For Upload Queue & One-Click Publisher + Cloud Backup (2 Columns) -->
+        <div class="grid grid-cols-12 gap-3">
+          
+          <!-- Col 1 (7 cols): Ready Videos Queue & One-Click Publisher -->
+          <div class="col-span-7 bg-[#0e121d] border border-[#182030] rounded-xl p-4 space-y-3 shadow-md">
+            <div class="flex items-center justify-between border-b border-[#182030] pb-2.5">
+              <div class="flex items-center gap-2 text-white font-bold text-sm">
+                <i data-lucide="film" class="w-4 h-4 text-emerald-400"></i>
+                <span>Ready For Upload Queue (Ready_For_Upload/)</span>
+              </div>
+              <button onclick="refreshPendingVideosList()" class="text-cyan-400 hover:text-cyan-300 text-xs flex items-center gap-1 cursor-pointer">
+                <i data-lucide="refresh-cw" class="w-3 h-3"></i>
+                <span>Scan Folder</span>
+              </button>
+            </div>
+
+            <div class="flex items-center justify-between bg-[#090c14] border border-[#182030] p-2.5 rounded-lg">
+              <div class="space-y-0.5">
+                <span class="text-slate-300 text-xs font-semibold">Videos Ready to Publish:</span>
+                <div class="flex items-center gap-2">
+                  <span id="fb-pending-count-badge" class="text-lg font-extrabold text-emerald-400 font-mono">0</span>
+                  <span class="text-[11px] text-slate-500">processed MP4 files waiting in Ready_For_Upload/</span>
+                </div>
+              </div>
+              <button onclick="triggerFacebookUploadAll()" class="bg-emerald-500 hover:bg-emerald-400 text-black font-extrabold px-5 py-2.5 rounded-xl shadow-lg shadow-emerald-500/20 flex items-center gap-2 transition cursor-pointer">
+                <i data-lucide="rocket" class="w-4 h-4 fill-black"></i>
+                <span>Auto-Upload Ready Videos Now</span>
+              </button>
+            </div>
+
+            <div class="text-[11px] text-slate-400 flex items-center justify-between pt-1">
+              <span>Status: <strong id="fb-upload-active-status" class="text-slate-300 font-normal">Idle — ready for trigger</strong></span>
+              <span class="text-slate-500">Live progress streams to Upload Logs panel</span>
+            </div>
+          </div>
+
+          <!-- Col 2 (5 cols): Cloud Backup & Webhook Sync -->
+          <div class="col-span-5 bg-[#0e121d] border border-[#182030] rounded-xl p-4 space-y-3 shadow-md">
+            <div class="flex items-center justify-between border-b border-[#182030] pb-2">
+              <div class="flex items-center gap-2 text-white font-bold text-sm">
+                <i data-lucide="cloud" class="w-4 h-4 text-indigo-400"></i>
+                <span>Cloud Backup & Webhook Sync</span>
+              </div>
+              <button onclick="syncAllToCloud()" class="bg-indigo-950/80 hover:bg-indigo-900 border border-indigo-700 text-indigo-300 px-2 py-0.5 rounded text-[10px] font-bold flex items-center gap-1 transition cursor-pointer" title="Sync all existing ready videos now">
+                <i data-lucide="refresh-cw" class="w-2.5 h-2.5"></i>
+                <span>Sync Now</span>
+              </button>
+            </div>
+
+            <div class="flex items-center justify-between">
+              <span class="text-slate-300 text-xs">Cloud Backup Enabled</span>
+              <label class="switch">
+                <input type="checkbox" id="cloud-sync-toggle" onchange="toggleCloudSync(this.checked)">
+                <span class="slider"></span>
+              </label>
+            </div>
+
+            <div class="flex gap-2 pt-1">
+              <input type="text" id="cloud-folder-path-input" placeholder="Cloud folder path (e.g. D:\GoogleDrive or OneDrive)..." class="flex-1 bg-[#090c14] border border-[#182030] rounded px-2.5 py-1 text-white text-xs focus:outline-none focus:border-indigo-500" onchange="saveCloudFolderPath(this.value)">
+              <button onclick="browseCloudFolder()" class="bg-[#131826] hover:bg-[#1f293d] border border-[#242f46] text-amber-300 hover:text-amber-200 px-3 py-1 rounded text-xs flex items-center gap-1 transition cursor-pointer">
+                <i data-lucide="folder" class="w-3 h-3 text-amber-400"></i>
+                <span>Browse</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================== -->
+      <!-- TAB 6: ANALYTICS (Live Enterprise Engine)      -->
+      <!-- ============================================== -->
+      <div id="tab-content-analytics" class="hidden space-y-3">
+        <div class="grid grid-cols-2 gap-3">
+          
+          <!-- Column 1: Lifetime Telemetry & Performance -->
+          <div class="bg-[#0e121d] border border-[#182030] rounded-xl p-4 space-y-3.5 shadow-lg">
+            <div class="flex items-center justify-between border-b border-[#182030] pb-2">
+              <div class="flex items-center gap-2 text-white font-bold text-sm">
+                <i data-lucide="bar-chart-2" class="w-4 h-4 text-emerald-400"></i>
+                <span>Lifetime Telemetry & Performance</span>
+              </div>
+              <button onclick="fetchAnalytics()" class="text-slate-400 hover:text-cyan-400 transition p-1" title="Refresh Analytics">
+                <i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i>
+              </button>
+            </div>
+
+            <div class="space-y-3 text-xs">
+              <div class="flex justify-between items-center text-slate-300">
+                <span>Total Scraped Videos:</span>
+                <span id="analytics-total-scraped" class="font-bold text-white font-mono text-sm">0</span>
+              </div>
+              <div class="flex justify-between items-center text-slate-300">
+                <span>Total Downloaded & Farmed:</span>
+                <span id="analytics-total-downloaded" class="font-bold text-emerald-400 font-mono text-sm">0</span>
+              </div>
+              <div class="flex justify-between items-center text-slate-300">
+                <span>Storage Saved / Processed:</span>
+                <span id="analytics-storage-saved" class="font-bold text-cyan-400 font-mono text-sm">0.0 GB</span>
+              </div>
+              <div class="flex justify-between items-center text-slate-300">
+                <span>Pipeline Success Rate:</span>
+                <span id="analytics-success-rate" class="font-bold text-white font-mono text-sm">100.0%</span>
+              </div>
+              <div class="flex justify-between items-center text-slate-300">
+                <span>Avg NVENC Encode Time:</span>
+                <span id="analytics-encode-time" class="font-bold text-purple-400 font-mono text-sm">0.8s / reel</span>
+              </div>
+              <div class="flex justify-between items-center text-slate-300 pt-1 border-t border-[#182030]">
+                <span>Active Performance Engine:</span>
+                <span id="analytics-engine-mode" class="font-bold text-amber-300 font-mono text-xs">Engine-X (GPU NVENC)</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Column 2: Platform Breakdown -->
+          <div class="bg-[#0e121d] border border-[#182030] rounded-xl p-4 space-y-3.5 shadow-lg">
+            <div class="flex items-center gap-2 text-white font-bold text-sm border-b border-[#182030] pb-2">
+              <i data-lucide="pie-chart" class="w-4 h-4 text-cyan-400"></i>
+              <span>Platform Breakdown</span>
+            </div>
+
+            <div class="space-y-3 text-xs">
+              <div class="flex justify-between items-center text-slate-300">
+                <span class="flex items-center gap-2 text-cyan-400 font-semibold"><i data-lucide="music-2" class="w-3.5 h-3.5"></i>TikTok</span>
+                <span id="analytics-plat-tiktok" class="font-bold text-white font-mono text-sm">0 vids</span>
+              </div>
+              <div class="flex justify-between items-center text-slate-300">
+                <span class="flex items-center gap-2 text-blue-400 font-semibold"><i data-lucide="facebook" class="w-3.5 h-3.5"></i>Facebook Reels / Videos</span>
+                <span id="analytics-plat-facebook" class="font-bold text-white font-mono text-sm">0 vids</span>
+              </div>
+              <div class="flex justify-between items-center text-slate-300">
+                <span class="flex items-center gap-2 text-pink-400 font-semibold"><i data-lucide="instagram" class="w-3.5 h-3.5"></i>Instagram Reels</span>
+                <span id="analytics-plat-instagram" class="font-bold text-white font-mono text-sm">0 vids</span>
+              </div>
+              <div class="flex justify-between items-center text-slate-300">
+                <span class="flex items-center gap-2 text-red-400 font-semibold"><i data-lucide="play" class="w-3.5 h-3.5 fill-red-400"></i>YouTube Shorts</span>
+                <span id="analytics-plat-youtube" class="font-bold text-white font-mono text-sm">0 vids</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Full-Width: Creator Farming Yield & Performance Summary -->
+        <div class="bg-[#0e121d] border border-[#182030] rounded-xl p-4 space-y-3 shadow-lg">
+          <div class="flex items-center justify-between border-b border-[#182030] pb-2">
+            <div class="flex items-center gap-2 text-white font-bold text-sm">
+              <i data-lucide="activity" class="w-4 h-4 text-indigo-400"></i>
+              <span>Creator Farming Yield & Performance Breakdown</span>
+            </div>
+            <span class="text-[11px] text-slate-400 font-mono">Live Database Sync</span>
+          </div>
+
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs">
+              <thead class="bg-[#090c14] text-slate-400 uppercase text-[10px] border-b border-[#182030] tracking-wider">
+                <tr>
+                  <th class="p-2.5">CREATOR</th>
+                  <th class="p-2.5 text-center">PLATFORM</th>
+                  <th class="p-2.5 text-center">TOTAL SCRAPED</th>
+                  <th class="p-2.5 text-center">FARMED (DONE)</th>
+                  <th class="p-2.5 text-center">YIELD PROGRESS</th>
+                  <th class="p-2.5 text-center">STORAGE</th>
+                  <th class="p-2.5 text-center">ENGINE STATUS</th>
+                </tr>
+              </thead>
+              <tbody id="analytics-creators-body" class="divide-y divide-[#182030] text-slate-300 font-medium">
+                <tr>
+                  <td colspan="7" class="p-4 text-center text-slate-400">Loading creator analytics...</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================== -->
+      <!-- TAB 7: SETTINGS (Screenshot 7)                 -->
+      <!-- ============================================== -->
+      <div id="tab-content-settings" class="hidden space-y-3">
+        <div class="grid grid-cols-2 gap-3">
+          
+          <!-- Card 1: AI Provider & API Keys -->
+          <div class="bg-[#0e121d] border border-[#182030] rounded-xl p-4 space-y-3">
+            <div class="flex items-center gap-2 text-white font-bold text-sm">
+              <i data-lucide="sparkles" class="w-4 h-4 text-purple-400"></i>
+              <span>AI Provider & API Keys</span>
+            </div>
+
+            <div class="flex items-center justify-between">
+              <select id="settings-ai-provider" class="bg-[#090c14] border border-[#182030] rounded-lg px-3 py-1.5 text-slate-300 text-xs w-60">
+                <option>Google Gemini (Fast & Viral)</option>
+                <option>OpenAI GPT-4o Mini</option>
+                <option>Claude 3.5 Haiku</option>
+              </select>
+              <button onclick="testGeminiConnection()" class="bg-[#090c14] hover:bg-[#131826] border border-cyan-500/50 text-cyan-300 px-3 py-1.5 rounded-lg text-xs flex items-center gap-1.5 transition">
+                <i data-lucide="pencil" class="w-3 h-3 text-cyan-400"></i>
+                <span>Test Connection</span>
+              </button>
+            </div>
+
+            <div>
+              <input type="password" id="settings-gemini-key" placeholder="Enter API Key..." class="w-full bg-[#090c14] border border-[#182030] rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-purple-500 font-mono">
+            </div>
+
+            <button onclick="saveAISettings()" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-2 rounded-lg shadow-md shadow-indigo-600/30 transition">
+              Save AI Settings
+            </button>
+          </div>
+
+          <!-- Card 2: PC Performance Mode -->
+          <div class="bg-[#0e121d] border border-[#182030] rounded-xl p-4 space-y-3">
+            <div class="flex items-center gap-2 text-white font-bold text-sm">
+              <i data-lucide="cpu" class="w-4 h-4 text-cyan-400"></i>
+              <span>PC Performance Mode</span>
+            </div>
+
+            <div class="space-y-1">
+              <select id="settings-performance" onchange="savePerformanceMode(this.value)" class="w-full bg-[#090c14] border border-[#182030] rounded-lg px-3 py-2 text-slate-300 text-xs font-medium">
+                <option value="High PC (GPU NVENC Accelerated)">High PC (GPU NVENC Accelerated)</option>
+                <option value="Medium PC">Medium PC</option>
+                <option value="Low PC">Low PC</option>
+              </select>
+              <p class="text-slate-500 text-[10px] pt-1">High PC utilizes multi-threaded parallel downloads and GPU hardware encoding.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3: Maintenance & Storage Cleanup -->
+        <div class="bg-[#0e121d] border border-[#182030] rounded-xl p-4 space-y-3">
+          <div class="flex items-center gap-2 text-white font-bold text-sm">
+            <i data-lucide="trash-2" class="w-4 h-4 text-amber-400"></i>
+            <span>Maintenance & Storage Cleanup</span>
+          </div>
+
+          <div class="flex items-center justify-between">
+            <span class="text-slate-400 text-xs">Auto-Cleanup:</span>
+            <select id="settings-cleanup" onchange="saveCleanupSchedule(this.value)" class="bg-[#090c14] border border-[#182030] rounded-lg px-3 py-1.5 text-slate-300 text-xs">
+              <option value="Daily">Daily</option>
+              <option value="Weekly">Weekly</option>
+              <option value="Monthly">Monthly</option>
+            </select>
+          </div>
+
+          <div class="flex items-center gap-2 pt-1 flex-wrap">
+            <button onclick="clearDownloadedFiles('files_only')" class="bg-[#090c14] hover:bg-amber-950/40 border border-[#182030] hover:border-amber-500 text-slate-300 hover:text-amber-300 px-3.5 py-2 rounded-lg text-xs font-semibold transition flex items-center gap-1.5 cursor-pointer">
+              <i data-lucide="file-x" class="w-3.5 h-3.5 text-amber-400"></i>
+              <span>Delete Downloaded Files</span>
+            </button>
+            <button onclick="clearDownloadedFiles('with_folders')" class="bg-[#090c14] hover:bg-red-950/40 border border-[#182030] hover:border-red-500 text-slate-300 hover:text-red-300 px-3.5 py-2 rounded-lg text-xs font-semibold transition flex items-center gap-1.5 cursor-pointer" title="Deletes all downloaded videos and removes creator folders completely">
+              <i data-lucide="trash-2" class="w-3.5 h-3.5 text-red-400"></i>
+              <span>Delete Videos with Folders</span>
+            </button>
+            <button onclick="checkAppUpdates()" class="bg-indigo-600 hover:bg-indigo-500 text-white font-semibold px-4 py-2 rounded-lg text-xs shadow-md shadow-indigo-600/30 transition flex items-center gap-1.5 cursor-pointer">
+              <i data-lucide="alert-circle" class="w-3.5 h-3.5"></i>
+              <span>Check Updates</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- ============================================== -->
+  <!-- BOTTOM PERSISTENT TERMINAL CONSOLE (v7.3)     -->
+  <!-- ============================================== -->
+  <footer id="bottom-console-panel" class="bg-[#06080d] border-t border-[#182030] flex flex-col z-20 shrink-0 h-40 transition-all duration-200">
+    <!-- Top Bar of Terminal -->
+    <div class="h-8 bg-[#090c14] border-b border-[#182030] flex items-center justify-between px-3">
+      <div class="flex items-center gap-1">
+        <button onclick="switchLogTab('download')" id="tab-btn-download" class="px-3 py-1 rounded text-[11px] font-bold bg-indigo-950 text-indigo-300 border border-indigo-700/60 flex items-center gap-1.5">
+          <i data-lucide="download" class="w-3 h-3"></i>
+          <span>Download Logs</span>
+        </button>
+        <button onclick="switchLogTab('upload')" id="tab-btn-upload" class="px-3 py-1 rounded text-[11px] font-medium text-slate-400 hover:text-white flex items-center gap-1.5">
+          <i data-lucide="upload" class="w-3 h-3"></i>
+          <span>Upload Logs</span>
+        </button>
+      </div>
+
+      <!-- Right Toolbar -->
+      <div class="flex items-center gap-2 text-[10px]">
+        <button onclick="toggleBlurLogs()" id="btn-blur" class="flex items-center gap-1 text-slate-400 hover:text-white px-2 py-0.5 rounded hover:bg-slate-800">
+          <i data-lucide="eye-off" class="w-3 h-3"></i>
+          <span>Blur Logs</span>
+        </button>
+        <button onclick="copyTerminalLogs()" class="flex items-center gap-1 text-slate-400 hover:text-white px-2 py-0.5 rounded hover:bg-slate-800">
+          <i data-lucide="copy" class="w-3 h-3"></i>
+          <span>Copy Logs</span>
+        </button>
+        <button onclick="clearTerminalLogs()" class="flex items-center gap-1 text-slate-400 hover:text-white px-2 py-0.5 rounded hover:bg-slate-800">
+          <i data-lucide="trash-2" class="w-3 h-3"></i>
+          <span>Clear</span>
+        </button>
+        <button onclick="toggleCollapseLogs()" id="btn-collapse" class="flex items-center gap-1 text-slate-400 hover:text-white px-2 py-0.5 rounded hover:bg-slate-800">
+          <i data-lucide="chevrons-down" class="w-3 h-3"></i>
+          <span>Collapse</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Terminal Output Stream Box -->
+    <div id="terminal-body" class="flex-1 overflow-y-auto p-2.5 font-mono text-[11px] space-y-1 bg-[#06080d]">
+      <!-- Injected by app.js -->
+    </div>
+  </footer>
+
+  <!-- FULL SCREEN LOCK / ACTIVATION OVERLAY (Remote Kill-Switch & HWID Guard) -->
+  <div id="license-lock-screen" class="fixed inset-0 bg-[#06080f]/95 backdrop-blur-2xl z-[99999] flex items-center justify-center p-4 hidden select-none">
+    <div class="bg-[#0d121f] border border-[#1e293b] rounded-3xl w-full max-w-lg shadow-2xl p-7 space-y-6 relative overflow-hidden">
+      <!-- Ambient Glows -->
+      <div class="absolute -top-20 -right-20 w-48 h-48 bg-rose-500/10 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="absolute -bottom-20 -left-20 w-48 h-48 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+      <!-- Header -->
+      <div class="text-center space-y-2">
+        <div class="inline-flex items-center justify-center relative mb-2">
+          <div class="w-24 h-24 rounded-3xl overflow-hidden border border-cyan-400/50 shadow-2xl shadow-cyan-900/60 bg-gradient-to-br from-[#0e1628] to-[#06080d] p-1.5 relative group">
+            <img src="/static/logo_icon.png" alt="Hassan AutoFarm Logo" class="w-full h-full object-contain rounded-2xl drop-shadow-[0_4px_16px_rgba(6,182,212,0.5)] transform group-hover:scale-105 transition-transform duration-300">
+            <div class="absolute inset-0 rounded-3xl ring-1 ring-inset ring-cyan-400/30 pointer-events-none"></div>
+          </div>
+          <div class="absolute -bottom-1 -right-1 w-6 h-6 rounded-xl bg-slate-900 border border-rose-500/60 flex items-center justify-center shadow-lg">
+            <i data-lucide="shield-alert" class="w-3.5 h-3.5 text-rose-400"></i>
+          </div>
+        </div>
+        <h2 id="lock-screen-title" class="text-xl font-extrabold text-white tracking-tight">Hassan AutoFarm Pro AI — Download Version 1.1</h2>
+        <p class="text-xs text-slate-400">Authorized License Key & 1-PC HWID Verification Required</p>
+      </div>
+
+      <!-- Status Alert Banner -->
+      <div id="lock-screen-banner" class="bg-rose-500/10 border border-rose-500/30 text-rose-300 text-xs px-4 py-3 rounded-xl flex items-start gap-2.5">
+        <i data-lucide="alert-circle" class="w-4 h-4 text-rose-400 shrink-0 mt-0.5"></i>
+        <div id="lock-screen-message" class="leading-relaxed">
+          License is currently inactive or turned OFF by administrator. Contact Hassan to activate.
+        </div>
+      </div>
+
+      <!-- Machine HWID Display -->
+      <div class="bg-[#070a12] border border-[#1b2333] rounded-2xl p-3.5 space-y-2">
+        <div class="flex items-center justify-between">
+          <span class="text-[11px] font-semibold text-slate-400 flex items-center gap-1.5">
+            <i data-lucide="cpu" class="w-3.5 h-3.5 text-purple-400"></i>
+            <span>This Computer's Hardware ID (HWID):</span>
+          </span>
+          <span class="text-[10px] text-emerald-400 font-mono font-bold">1-PC Locked</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <input type="text" id="lock-hwid-display" readonly value="Loading HWID..."
+            class="flex-1 bg-[#0d121f] border border-slate-800 rounded-xl px-3 py-2 text-xs font-mono font-bold text-cyan-300 select-all focus:outline-none">
+          <button type="button" onclick="copyLockHWID()" class="bg-indigo-600 hover:bg-indigo-500 text-white px-3.5 py-2 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shrink-0 cursor-pointer shadow-lg shadow-indigo-600/20">
+            <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+            <span>Copy</span>
+          </button>
+        </div>
+        <p class="text-[10px] text-slate-500">Send this HWID to Hassan (03156535711) if you need authorization or reset.</p>
+      </div>
+
+      <!-- Key Input & Activation Form -->
+      <form onsubmit="handleLockActivation(event)" class="space-y-3">
+        <div class="space-y-1">
+          <label class="text-xs font-semibold text-slate-300 flex items-center gap-1.5">
+            <i data-lucide="key" class="w-3.5 h-3.5 text-amber-400"></i>
+            <span>Enter Your License Key:</span>
+          </label>
+          <input type="text" id="lock-key-input" required placeholder="e.g. HAF-XXXX-XXXX-XXXX"
+            class="w-full bg-[#070a12] border border-slate-800 rounded-xl px-4 py-2.5 text-xs font-mono text-white placeholder-slate-600 uppercase focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition">
+        </div>
+
+        <button type="submit" id="btn-lock-activate"
+          class="w-full bg-gradient-to-r from-indigo-600 via-cyan-600 to-indigo-600 hover:opacity-90 text-white font-bold py-3 rounded-xl text-xs shadow-lg shadow-indigo-600/30 transition flex items-center justify-center gap-2 cursor-pointer">
+          <i data-lucide="unlock" class="w-4 h-4"></i>
+          <span id="lock-activate-btn-text">Activate License Now</span>
+        </button>
+      </form>
+
+      <!-- Support Links -->
+      <div class="pt-2 border-t border-slate-800/80 flex items-center justify-between text-xs">
+        <a href="https://wa.me/923156535711" target="_blank" class="flex items-center gap-1.5 text-emerald-400 hover:text-emerald-300 transition">
+          <i data-lucide="message-circle" class="w-4 h-4"></i>
+          <span>WhatsApp: <strong>03156535711</strong></span>
+        </a>
+        <button type="button" onclick="reverifyLicense()" class="text-slate-400 hover:text-cyan-400 transition flex items-center gap-1 cursor-pointer">
+          <i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i>
+          <span>Re-Check Server</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODALS -->
+  <div id="modal-license" onclick="if(event.target === this) closeModal('modal-license')" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center hidden cursor-pointer">
+    <div onclick="event.stopPropagation()" class="bg-[#0e121d] border border-emerald-500/40 rounded-2xl w-[480px] shadow-2xl p-5 space-y-4 cursor-default relative">
+      <div class="flex items-center justify-between border-b border-[#182030] pb-2.5">
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-lg overflow-hidden border border-cyan-500/40 shadow-sm bg-gradient-to-b from-[#0c1220] to-[#06080d] p-0.5">
+            <img src="/static/logo_icon.png" alt="Logo" class="w-full h-full object-contain rounded">
+          </div>
+          <div>
+            <h3 class="text-white font-bold text-sm">PRO AI License Status</h3>
+            <p class="text-[10px] text-emerald-400 font-medium">✔ Master Developer Machine — Active & Whitelisted</p>
+          </div>
+        </div>
+        <button onclick="closeModal('modal-license')" class="w-8 h-8 rounded-lg bg-[#182030] hover:bg-slate-700 text-slate-300 hover:text-white flex items-center justify-center transition cursor-pointer shadow"><i data-lucide="x" class="w-4 h-4"></i></button>
+      </div>
+      <div class="bg-[#090c14] p-3.5 rounded-xl border border-[#182030] space-y-2 text-xs">
+        <div class="flex justify-between"><span class="text-slate-400">Edition:</span> <span class="text-white font-bold">Hassan AutoFarm Enterprise v1.1</span></div>
+        <div class="flex justify-between"><span class="text-slate-400">Licensed To:</span> <span id="lic-modal-client" class="text-emerald-400 font-bold">Hassan (Master PC)</span></div>
+        <div class="flex justify-between"><span class="text-slate-400">Status:</span> <span id="lic-modal-status" class="text-emerald-400 font-bold">Active & Whitelisted</span></div>
+        <div class="flex justify-between"><span class="text-slate-400">Remaining:</span> <span id="lic-modal-days" class="text-cyan-400 font-mono font-bold">Lifetime (99999 Days)</span></div>
+        <div class="flex justify-between"><span class="text-slate-400">License Key:</span> <span id="lic-modal-key" class="text-slate-300 font-mono text-[11px] select-all">HAF-MASTER-DEV-UNLIMITED</span></div>
+        <div class="flex justify-between"><span class="text-slate-400">Hardware ID:</span> <span id="lic-modal-hwid" class="text-purple-400 font-mono text-[11px] select-all">Checking...</span></div>
+      </div>
+      <div class="flex items-center gap-2">
+        <button onclick="closeModal('modal-license')" class="flex-1 bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-2.5 rounded-xl transition cursor-pointer flex items-center justify-center gap-2 text-xs shadow-lg shadow-emerald-950/60">
+          <i data-lucide="check-circle" class="w-4 h-4"></i>
+          <span>Continue / Close (Master PC Unlocked)</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div id="modal-channel-links" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center hidden">
+    <div class="bg-[#0e121d] border border-[#182030] rounded-2xl w-[720px] shadow-2xl p-5 space-y-4">
+      <div class="flex items-center justify-between border-b border-[#182030] pb-2">
+        <div class="flex items-center gap-2">
+          <i data-lucide="link" class="w-4 h-4 text-cyan-400"></i>
+          <h3 id="links-modal-title" class="text-white font-bold text-sm">Scraped Video Links</h3>
+        </div>
+        <button onclick="closeModal('modal-channel-links')" class="text-slate-400 hover:text-white"><i data-lucide="x" class="w-4 h-4"></i></button>
+      </div>
+
+      <!-- Search & Status Filter Controls -->
+      <div class="flex items-center justify-between gap-3">
+        <input type="text" id="links-modal-search" oninput="filterModalLinks()" placeholder="Search video titles or URLs..." class="flex-1 bg-[#090c14] border border-[#182030] rounded-lg px-3 py-1.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-cyan-500">
+        <div class="flex items-center gap-1.5">
+          <button onclick="setLinksFilter('all')" id="filter-btn-all" class="px-2.5 py-1 rounded text-xs font-bold bg-cyan-950 text-cyan-300 border border-cyan-700">All</button>
+          <button onclick="setLinksFilter('done')" id="filter-btn-done" class="px-2.5 py-1 rounded text-xs font-bold bg-[#090c14] text-slate-400 border border-[#182030] hover:text-emerald-400">Done</button>
+          <button onclick="setLinksFilter('queued')" id="filter-btn-queued" class="px-2.5 py-1 rounded text-xs font-bold bg-[#090c14] text-slate-400 border border-[#182030] hover:text-amber-400">Queued</button>
+        </div>
+      </div>
+
+      <!-- Links List -->
+      <div id="links-modal-list" class="max-h-80 overflow-y-auto space-y-2 font-mono text-[11px] bg-[#090c14] p-3 rounded-lg border border-[#182030] text-slate-300"></div>
+
+      <!-- Bottom Action Buttons -->
+      <div class="flex items-center justify-between gap-3 pt-1 border-t border-[#182030]">
+        <button onclick="copyChannelLinks()" class="flex-1 bg-cyan-600 hover:bg-cyan-500 text-white font-bold py-2 rounded-lg text-xs flex items-center justify-center gap-1.5 transition">
+          <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+          <span>Copy All Links</span>
+        </button>
+        <button onclick="exportModalLinksCSV()" class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold px-5 py-2 rounded-lg text-xs flex items-center gap-1.5 transition">
+          <i data-lucide="download" class="w-3.5 h-3.5"></i>
+          <span>Export CSV</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div id="modal-add-id" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center hidden">
+    <div class="bg-[#0e121d] border border-[#182030] rounded-2xl w-[420px] shadow-2xl p-5 space-y-4">
+      <div class="flex items-center justify-between border-b border-[#182030] pb-2">
+        <h3 class="text-white font-bold text-sm">Add by Platform ID</h3>
+        <button onclick="closeModal('modal-add-id')" class="text-slate-400 hover:text-white"><i data-lucide="x" class="w-4 h-4"></i></button>
+      </div>
+      <select id="modal-add-id-platform" class="w-full bg-[#090c14] border border-[#182030] rounded-lg px-3 py-2 text-white">
+        <option value="tiktok">TikTok Channel / Username</option>
+        <option value="facebook">Facebook Creator Profile</option>
+        <option value="youtube">YouTube Channel ID / Handle</option>
+        <option value="instagram">Instagram Account / Page ID</option>
+      </select>
+      <input type="text" id="modal-add-id-input" placeholder="e.g. adkiron or stepsisazra" class="w-full bg-[#090c14] border border-[#182030] rounded-lg px-3 py-2 text-white focus:outline-none focus:border-cyan-500">
+      <button onclick="submitAddById()" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-2 rounded-lg transition">Add to Queue</button>
+    </div>
+  </div>
+
+  <div id="modal-batch-import" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center hidden">
+    <div class="bg-[#0e121d] border border-[#182030] rounded-2xl w-[500px] shadow-2xl p-5 space-y-4">
+      <div class="flex items-center justify-between border-b border-[#182030] pb-2">
+        <h3 class="text-white font-bold text-sm">Batch Import Channel & Video URLs</h3>
+        <button onclick="closeModal('modal-batch-import')" class="text-slate-400 hover:text-white"><i data-lucide="x" class="w-4 h-4"></i></button>
+      </div>
+      <p class="text-slate-400 text-xs">Paste multiple TikTok, Facebook, YouTube, or Instagram URLs (one per line):</p>
+      <textarea id="modal-batch-textarea" rows="6" placeholder="https://www.tiktok.com/@adkiron&#10;https://www.tiktok.com/@kalanblacksmithing&#10;https://www.tiktok.com/@blackbearforge" class="w-full bg-[#090c14] border border-[#182030] rounded-lg p-3 text-white font-mono text-xs focus:outline-none focus:border-cyan-500"></textarea>
+      <button onclick="submitBatchImport()" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-2.5 rounded-lg transition">Import All URLs</button>
+    </div>
+  </div>
+
+  <!-- Proxy Pool Manager Modal (Matching Screenshot Exactly) -->
+  <div id="modal-proxy" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center hidden">
+    <div class="bg-[#0e121d] border border-[#1f293d] rounded-2xl w-[580px] shadow-2xl p-6 space-y-4 font-sans">
+      <div class="flex items-center justify-between border-b border-[#182030] pb-3">
+        <div class="flex items-center gap-2.5">
+          <i data-lucide="lock" class="w-4 h-4 text-amber-400"></i>
+          <h3 class="text-white font-bold text-sm">Proxy Pool Manager</h3>
+          <span id="proxy-active-badge" class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-950 text-emerald-400 border border-emerald-700 font-mono">1 Active</span>
+        </div>
+        <button onclick="closeModal('modal-proxy')" class="text-slate-400 hover:text-white"><i data-lucide="x" class="w-4 h-4"></i></button>
+      </div>
+
+      <div class="space-y-1 text-xs">
+        <p class="text-slate-400">Paste your proxies below (one per line). Supported formats:</p>
+        <p class="text-slate-500 font-mono text-[11px]">ip:port or ip:port:user:pass or http://user:pass@ip:port</p>
+      </div>
+
+      <textarea id="proxy-textarea" rows="7" class="w-full bg-[#090c14] border border-[#182030] rounded-xl p-3.5 text-slate-300 font-mono text-xs focus:outline-none focus:border-cyan-500 leading-relaxed" placeholder="# Proxy list (one per line)&#10;# Format: host:port:username:password&#10;193.8.8.205:8000:4b0TXc:czTux0"></textarea>
+
+      <div class="flex items-center justify-between pt-2 border-t border-[#182030]">
+        <span onclick="openProxiesFile()" class="text-cyan-400 hover:underline text-xs cursor-pointer flex items-center gap-1">
+          <span>Loaded from proxies.txt</span>
+        </span>
+        <div class="flex items-center gap-2">
+          <button onclick="openProxiesNotepad()" class="bg-[#131826] hover:bg-[#1f273d] text-slate-300 px-3.5 py-1.5 rounded-lg text-xs font-bold border border-[#242f46] flex items-center gap-1.5 transition">
+            <i data-lucide="file-text" class="w-3.5 h-3.5"></i>
+            <span>Notepad</span>
+          </button>
+          <button onclick="saveProxyPool()" class="bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-4 py-1.5 rounded-lg text-xs flex items-center gap-1.5 shadow-lg shadow-emerald-950 transition">
+            <i data-lucide="save" class="w-3.5 h-3.5"></i>
+            <span>Save Proxies</span>
+          </button>
+          <button onclick="closeModal('modal-proxy')" class="bg-[#182030] hover:bg-slate-700 text-slate-300 px-3.5 py-1.5 rounded-lg text-xs font-bold transition">
+            <span>Close</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="modal-session-cookies" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center hidden">
+    <div class="bg-[#0e121d] border border-amber-500/50 rounded-2xl w-[520px] shadow-2xl p-5 space-y-4">
+      <div class="flex items-center justify-between border-b border-[#182030] pb-2">
+        <div class="flex items-center gap-2">
+          <i data-lucide="lock" class="w-4 h-4 text-amber-400"></i>
+          <h3 class="text-white font-bold text-sm">Browser Session & Account Login</h3>
+        </div>
+        <button onclick="closeModal('modal-session-cookies')" class="text-slate-400 hover:text-white"><i data-lucide="x" class="w-4 h-4"></i></button>
+      </div>
+      
+      <p class="text-slate-300 text-xs leading-relaxed">
+        Select a platform below to open the interactive browser, log in with your account (TikTok / YouTube / Instagram / Facebook), and close the window when finished:
+      </p>
+
+      <div class="grid grid-cols-2 gap-2.5">
+        <button onclick="launchLoginPlatform('tiktok')" class="bg-[#090c14] border border-[#182030] hover:border-cyan-500 p-2.5 rounded-xl flex items-center justify-center gap-2 text-xs text-white font-bold transition">
+          <i data-lucide="music-2" class="w-3.5 h-3.5 text-cyan-400"></i>
+          <span>Login TikTok</span>
+        </button>
+        <button onclick="launchLoginPlatform('youtube')" class="bg-[#090c14] border border-[#182030] hover:border-red-500 p-2.5 rounded-xl flex items-center justify-center gap-2 text-xs text-white font-bold transition">
+          <i data-lucide="youtube" class="w-3.5 h-3.5 text-red-500"></i>
+          <span>Login YouTube</span>
+        </button>
+        <button onclick="launchLoginPlatform('instagram')" class="bg-[#090c14] border border-[#182030] hover:border-pink-500 p-2.5 rounded-xl flex items-center justify-center gap-2 text-xs text-white font-bold transition">
+          <i data-lucide="instagram" class="w-3.5 h-3.5 text-pink-400"></i>
+          <span>Login Instagram</span>
+        </button>
+        <button onclick="launchLoginPlatform('facebook')" class="bg-[#090c14] border border-[#182030] hover:border-blue-500 p-2.5 rounded-xl flex items-center justify-center gap-2 text-xs text-white font-bold transition">
+          <i data-lucide="facebook" class="w-3.5 h-3.5 text-blue-400"></i>
+          <span>Login Facebook</span>
+        </button>
+      </div>
+
+      <div class="border-t border-[#182030] pt-2">
+        <button onclick="saveAndCloseSession()" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-2.5 rounded-xl text-xs flex items-center justify-center gap-2 shadow-lg shadow-emerald-950 transition">
+          <i data-lucide="check" class="w-4 h-4"></i>
+          <span>Save Session & Ready for Scraping</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div id="modal-single-video" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center hidden">
+    <div class="bg-[#0e121d] border border-cyan-500/40 rounded-2xl w-[500px] shadow-2xl p-5 space-y-4">
+      <div class="flex items-center justify-between border-b border-[#182030] pb-2">
+        <div class="flex items-center gap-2">
+          <i data-lucide="video" class="w-4 h-4 text-cyan-400"></i>
+          <h3 class="text-white font-bold text-sm">Single Video Scraper & Downloader</h3>
+        </div>
+        <button onclick="closeModal('modal-single-video')" class="text-slate-400 hover:text-white"><i data-lucide="x" class="w-4 h-4"></i></button>
+      </div>
+      <p class="text-slate-400 text-xs leading-relaxed">
+        Paste any direct TikTok, Instagram, YouTube, or Facebook Video URL. The video will be scraped, encoded, and saved into <span class="text-emerald-400 font-mono font-bold">Ready_For_Upload/@single_videos/</span>:
+      </p>
+      <input type="text" id="single-video-url" onkeypress="if(event.key==='Enter') submitSingleVideoScrape()" placeholder="https://www.tiktok.com/@user/video/..." class="w-full bg-[#090c14] border border-[#182030] rounded-lg px-3 py-2 text-white text-xs focus:outline-none focus:border-cyan-500 font-mono">
+      <div class="flex items-center gap-2 pt-1">
+        <button onclick="submitSingleVideoScrape()" class="flex-1 bg-cyan-600 hover:bg-cyan-500 text-white font-bold py-2.5 rounded-lg flex items-center justify-center gap-2 transition cursor-pointer shadow-lg shadow-cyan-600/20">
+          <i data-lucide="download" class="w-4 h-4"></i>
+          <span>Scrape & Download Video</span>
+        </button>
+        <button onclick="closeModal('modal-single-video')" class="bg-[#182030] hover:bg-slate-700 text-slate-300 px-4 py-2.5 rounded-lg text-xs font-bold transition">
+          Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div id="modal-direct-batch" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center hidden">
+    <div class="bg-[#0e121d] border border-indigo-500/40 rounded-2xl w-[520px] shadow-2xl p-5 space-y-4">
+      <div class="flex items-center justify-between border-b border-[#182030] pb-2">
+        <div class="flex items-center gap-2">
+          <i data-lucide="zap" class="w-4 h-4 text-amber-400"></i>
+          <h3 class="text-white font-bold text-sm">Direct Video Links Batch Import</h3>
+        </div>
+        <button onclick="closeModal('modal-direct-batch')" class="text-slate-400 hover:text-white"><i data-lucide="x" class="w-4 h-4"></i></button>
+      </div>
+      <p class="text-slate-400 text-xs leading-relaxed">
+        Paste raw video links below (one per line). All URLs will be indexed under creator <strong class="text-indigo-400 font-mono">@direct_batch_imports</strong> and queued for batch download:
+      </p>
+      <textarea id="direct-batch-textarea" rows="6" placeholder="https://www.tiktok.com/@user/video/123456789&#10;https://www.instagram.com/reel/C0abc123/&#10;https://www.youtube.com/shorts/xyz789" class="w-full bg-[#090c14] border border-[#182030] rounded-lg p-3 text-white font-mono text-xs focus:outline-none focus:border-indigo-500"></textarea>
+      <div class="flex items-center gap-2 pt-1">
+        <button onclick="submitDirectBatchLinks()" class="flex-1 bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-2.5 rounded-lg flex items-center justify-center gap-2 transition cursor-pointer shadow-lg shadow-indigo-600/20">
+          <i data-lucide="folder-plus" class="w-4 h-4"></i>
+          <span>Import & Queue All Links</span>
+        </button>
+        <button onclick="closeModal('modal-direct-batch')" class="bg-[#182030] hover:bg-slate-700 text-slate-300 px-4 py-2.5 rounded-lg text-xs font-bold transition">
+          Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div id="modal-warmer" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center hidden">
+    <div class="bg-[#0e121d] border border-orange-500/50 rounded-2xl w-[600px] shadow-2xl p-5 space-y-4">
+      <div class="flex items-center justify-between border-b border-[#182030] pb-2">
+        <div class="flex items-center gap-2">
+          <i data-lucide="flame" class="w-4 h-4 text-orange-400"></i>
+          <h3 class="text-orange-400 font-extrabold text-sm uppercase">ID ACTIVATOR (ACCOUNT WARMER)</h3>
+        </div>
+        <button onclick="closeModal('modal-warmer')" class="text-slate-400 hover:text-white"><i data-lucide="x" class="w-4 h-4"></i></button>
+      </div>
+      <div class="flex items-center justify-between bg-[#090c14] p-2.5 rounded-xl border border-[#182030]">
+        <div class="flex items-center gap-2 text-xs text-slate-300">
+          <span>AntiDetect Gateway Port:</span> 
+          <input type="text" id="warmer-port-input" value="11200" class="w-20 bg-[#0e121d] border border-[#182030] text-emerald-400 rounded px-2 py-1 text-center font-mono font-bold focus:outline-none focus:border-orange-500">
+        </div>
+        <span id="warmer-status-badge" class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-emerald-950 text-emerald-400 border border-emerald-700">12 Profiles Ready</span>
+      </div>
+      <div class="p-3 bg-[#090c14] rounded-xl border border-[#182030] text-xs space-y-1.5 text-slate-400">
+        <div class="flex items-center justify-between text-slate-300">
+          <span>Simulated Activities:</span>
+          <span class="text-cyan-400 font-semibold font-mono">Reels Swipe • FYP Scroll • Human Dwell Time</span>
+        </div>
+        <div class="flex items-center justify-between text-slate-300">
+          <span>Anti-Ban Protection:</span>
+          <span class="text-emerald-400 font-semibold font-mono">Dynamic TLS Fingerprint • Mouse Curves</span>
+        </div>
+      </div>
+      <div class="flex gap-2">
+        <button onclick="startWarmer()" class="flex-1 bg-orange-600 hover:bg-orange-500 text-white font-bold py-2.5 rounded-xl flex items-center justify-center gap-2 transition cursor-pointer shadow-lg shadow-orange-600/30">
+          <i data-lucide="play" class="w-4 h-4 fill-white"></i>
+          <span>START WARMING</span>
+        </button>
+        <button onclick="stopWarmer()" class="bg-red-950/60 hover:bg-red-900 border border-red-700 text-red-300 font-bold px-6 py-2.5 rounded-xl transition cursor-pointer">
+          STOP
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 45-Layer Matrix GUI Modal -->
+  <div id="modal-matrix-gui" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center hidden">
+    <div class="bg-[#0e121d] border border-purple-500/40 rounded-2xl w-[640px] shadow-2xl p-5 space-y-4 max-h-[85vh] flex flex-col">
+      <div class="flex items-center justify-between border-b border-[#182030] pb-2 shrink-0">
+        <div class="flex items-center gap-2">
+          <i data-lucide="sliders" class="w-4 h-4 text-purple-400"></i>
+          <h3 class="text-white font-bold text-sm">45-Layer Advanced AntiDetect Matrix Inspector</h3>
+        </div>
+        <button onclick="closeModal('modal-matrix-gui')" class="text-slate-400 hover:text-white"><i data-lucide="x" class="w-4 h-4"></i></button>
+      </div>
+      <div class="overflow-y-auto space-y-2 font-mono text-xs pr-1">
+        <div class="p-2.5 bg-[#090c14] rounded-lg border border-emerald-900/60 flex items-center justify-between">
+          <div class="space-y-0.5">
+            <span class="text-emerald-400 font-bold">Layers 01–10: EXIF & Metadata Cryptographic Scrubber</span>
+            <p class="text-slate-500 text-[10px]">Strips Camera Model, GPS Coordinates, Serial, IPTC, ICC Profiles, and Thumbnail Blobs</p>
+          </div>
+          <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-950 text-emerald-400 border border-emerald-700">100% Active</span>
+        </div>
+        <div class="p-2.5 bg-[#090c14] rounded-lg border border-emerald-900/60 flex items-center justify-between">
+          <div class="space-y-0.5">
+            <span class="text-emerald-400 font-bold">Layers 11–20: Sub-Pixel Micro-Noise Grain & Lattice Scrambler</span>
+            <p class="text-slate-500 text-[10px]">Injects microscopic +/-1 RGB lattice shifts to randomize MD5, SHA-256, and perceptual pHash</p>
+          </div>
+          <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-950 text-emerald-400 border border-emerald-700">100% Active</span>
+        </div>
+        <div class="p-2.5 bg-[#090c14] rounded-lg border border-emerald-900/60 flex items-center justify-between">
+          <div class="space-y-0.5">
+            <span class="text-emerald-400 font-bold">Layers 21–30: Micro-Contrast, Gamma & Luminance Matrix</span>
+            <p class="text-slate-500 text-[10px]">Applies 0.8% adaptive contrast and gamma dither to evade neural network fingerprinting</p>
+          </div>
+          <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-950 text-emerald-400 border border-emerald-700">100% Active</span>
+        </div>
+        <div class="p-2.5 bg-[#090c14] rounded-lg border border-emerald-900/60 flex items-center justify-between">
+          <div class="space-y-0.5">
+            <span class="text-emerald-400 font-bold">Layers 31–40: Smart Canvas Crop & Border Pixel Shift</span>
+            <p class="text-slate-500 text-[10px]">Precision micro-crop eliminating edge compression signatures and spatial hashes</p>
+          </div>
+          <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-950 text-emerald-400 border border-emerald-700">100% Active</span>
+        </div>
+        <div class="p-2.5 bg-[#090c14] rounded-lg border border-purple-900/60 flex items-center justify-between">
+          <div class="space-y-0.5">
+            <span class="text-purple-400 font-bold">Layers 41–45: Ultra Shield Alpha Compositor & Watermark</span>
+            <p class="text-slate-500 text-[10px]">Subtle brand protection overlay with multi-channel alpha blending</p>
+          </div>
+          <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-purple-950 text-purple-400 border border-purple-700">Ultra Shield</span>
+        </div>
+      </div>
+      <div class="flex items-center justify-between pt-2 border-t border-[#182030] shrink-0">
+        <button onclick="runSampleImageTest()" class="bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-4 py-2 rounded-lg text-xs flex items-center gap-2 transition cursor-pointer">
+          <i data-lucide="shield-check" class="w-4 h-4"></i>
+          <span>Run 45-Layer Verification Test</span>
+        </button>
+        <button onclick="closeModal('modal-matrix-gui')" class="bg-[#182030] hover:bg-slate-700 text-slate-300 px-4 py-2 rounded-lg text-xs font-bold transition">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Global Creator Actions Menu (Positioned dynamically, guaranteed to never get clipped) -->
+  <div id="global-creator-action-menu" class="hidden fixed w-52 bg-[#090c14] border border-[#222d42] rounded-xl shadow-2xl z-[99999] py-1.5 font-sans text-xs backdrop-blur-md">
+    <div class="px-3 py-1.5 border-b border-[#182030] text-[11px] font-bold text-slate-400 flex items-center justify-between">
+      <span id="global-action-creator-name" class="text-cyan-400 font-mono truncate max-w-[130px]">@creator</span>
+      <span class="text-[10px] text-slate-500 font-semibold uppercase">Actions</span>
+    </div>
+    <div class="py-1">
+      <button onclick="assignProfileID()" class="w-full text-left px-3 py-2 hover:bg-[#131826] text-slate-300 hover:text-white flex items-center gap-2.5 transition cursor-pointer">
+        <i data-lucide="id-card" class="w-4 h-4 text-indigo-400"></i>
+        <span>Assign to Profile ID</span>
+      </button>
+      <button onclick="resetChannelQueue()" class="w-full text-left px-3 py-2 hover:bg-[#131826] text-slate-300 hover:text-cyan-400 flex items-center gap-2.5 transition cursor-pointer">
+        <i data-lucide="refresh-cw" class="w-4 h-4 text-cyan-400"></i>
+        <span>Reset Queue (0)</span>
+      </button>
+      <button onclick="resetChannelDone()" class="w-full text-left px-3 py-2 hover:bg-[#131826] text-slate-300 hover:text-emerald-400 flex items-center gap-2.5 transition cursor-pointer" title="Reset completed/done count back to 0 and re-queue videos">
+        <i data-lucide="rotate-ccw" class="w-4 h-4 text-emerald-400"></i>
+        <span>Reset Done (0)</span>
+      </button>
+      <button onclick="clearChannelFiles()" class="w-full text-left px-3 py-2 hover:bg-[#131826] text-slate-300 hover:text-amber-400 flex items-center gap-2.5 transition cursor-pointer">
+        <i data-lucide="trash-2" class="w-4 h-4 text-amber-400"></i>
+        <span>Clear Cached Files</span>
+      </button>
+      <div class="border-t border-[#182030] my-1"></div>
+      <button onclick="deleteChannel()" class="w-full text-left px-3 py-2 hover:bg-red-950/70 text-red-400 hover:text-red-300 flex items-center gap-2.5 transition cursor-pointer">
+        <i data-lucide="trash" class="w-4 h-4 text-red-500"></i>
+        <span>Delete Creator</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Notification Toast -->
+  <div id="toast" class="fixed bottom-44 right-6 bg-[#0e121d] border border-cyan-500/60 text-white px-4 py-2.5 rounded-xl shadow-2xl flex items-center gap-2 text-xs hidden z-50">
+    <i data-lucide="check-circle" class="w-4 h-4 text-cyan-400"></i>
+    <span id="toast-text">Action completed successfully.</span>
+  </div>
+
+  <script>
+    window.INITIAL_STATE = {{ initial_state_json|safe }};
+  </script>
+  <script src="/static/app.js"></script>
+</body>
+</html>
