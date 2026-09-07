@@ -36,11 +36,122 @@ def custom_static(filename):
 ADMIN_USERNAME = os.environ.get("ADMIN_USER", "admin")
 ADMIN_PASSWORD = os.environ.get("ADMIN_PASS", "Hassan@AutoFarm2026!")
 
-# --- DATABASE SETUP ---
+# --- DATABASE SETUP (PostgreSQL / SQLite Dual Engine with Persistent JSON Backup) ---
+BACKUP_JSON_PATH = os.path.join(BASE_DIR, "licenses_backup.json")
+
+class DBWrapper:
+    def __init__(self, is_pg=False, conn=None):
+        self.is_pg = is_pg
+        self.conn = conn
+
+    def cursor(self):
+        return CursorWrapper(self.is_pg, self.conn.cursor())
+
+    def commit(self):
+        self.conn.commit()
+
+    def close(self):
+        self.conn.close()
+
+class CursorWrapper:
+    def __init__(self, is_pg, cur):
+        self.is_pg = is_pg
+        self.cur = cur
+
+    def execute(self, sql, params=()):
+        if self.is_pg:
+            # Convert SQLite DDL and parameter syntax to PostgreSQL
+            pg_sql = sql.replace("INTEGER PRIMARY KEY AUTOINCREMENT", "SERIAL PRIMARY KEY")
+            pg_sql = pg_sql.replace("?", "%s")
+            self.cur.execute(pg_sql, params)
+        else:
+            self.cur.execute(sql, params)
+        return self
+
+    def fetchone(self):
+        return self.cur.fetchone()
+
+    def fetchall(self):
+        return self.cur.fetchall()
+
 def get_db():
+    db_url = os.environ.get("DATABASE_URL") or os.environ.get("POSTGRES_URL")
+    if db_url:
+        if db_url.startswith("postgres://"):
+            db_url = db_url.replace("postgres://", "postgresql://", 1)
+        try:
+            import psycopg2
+            import psycopg2.extras
+            conn = psycopg2.connect(db_url)
+            conn.cursor_factory = psycopg2.extras.RealDictCursor
+            return DBWrapper(is_pg=True, conn=conn)
+        except Exception as e:
+            print(f"⚠️ PostgreSQL connection failed ({e}), falling back to SQLite.")
+
     conn = sqlite3.connect(DB_PATH, timeout=10)
     conn.row_factory = sqlite3.Row
-    return conn
+    return DBWrapper(is_pg=False, conn=conn)
+
+def sync_to_backup_file(conn):
+    """Persist all current licenses to JSON backup so ephemeral cloud hosts never lose data."""
+    try:
+        cur = conn.cursor()
+        cur.execute("SELECT * FROM licenses ORDER BY id ASC")
+        rows = cur.fetchall()
+        data = []
+        for r in rows:
+            data.append({
+                "license_key": r["license_key"],
+                "client_name": r["client_name"],
+                "client_phone": r["client_phone"] or "",
+                "hwid": r["hwid"] or "",
+                "is_active": int(r["is_active"]),
+                "created_at": str(r["created_at"] or ""),
+                "expires_at": str(r["expires_at"] or ""),
+                "notes": r["notes"] or ""
+            })
+        if data:
+            with open(BACKUP_JSON_PATH, "w", encoding="utf-8") as f:
+                json.dump(data, f, indent=2)
+    except Exception as e:
+        print("Backup sync warning:", e)
+
+def restore_from_backup_file(conn):
+    """Auto-restore client licenses from persistent backup file on boot/spin-up."""
+    if not os.path.exists(BACKUP_JSON_PATH):
+        return
+    try:
+        with open(BACKUP_JSON_PATH, "r", encoding="utf-8") as f:
+            data = json.load(f)
+        if not isinstance(data, list) or not data:
+            return
+        cur = conn.cursor()
+        restored = 0
+        for item in data:
+            k = item.get("license_key")
+            if not k:
+                continue
+            cur.execute("SELECT id FROM licenses WHERE license_key = ?", (k,))
+            if not cur.fetchone():
+                cur.execute("""
+                INSERT INTO licenses (license_key, client_name, client_phone, hwid, is_active, created_at, expires_at, notes)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+                """, (
+                    k,
+                    item.get("client_name", "Client"),
+                    item.get("client_phone", ""),
+                    item.get("hwid") or None,
+                    int(item.get("is_active", 1)),
+                    item.get("created_at") or datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+                    item.get("expires_at") or "Lifetime",
+                    item.get("notes", "")
+                ))
+                restored += 1
+        if restored > 0:
+            conn.commit()
+            print(f"[OK] Auto-restored {restored} persistent license(s) from backup JSON.")
+    except Exception as e:
+        print("Restore warning:", e)
 
 def init_db():
     conn = get_db()
@@ -73,17 +184,39 @@ def init_db():
         timestamp TEXT
     )
     """)
+    cur.execute("""
+    CREATE TABLE IF NOT EXISTS client_links (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        license_key TEXT NOT NULL,
+        url TEXT NOT NULL,
+        name TEXT DEFAULT '',
+        platform TEXT DEFAULT 'tiktok',
+        videos_count INTEGER DEFAULT 0,
+        added_at TEXT,
+        last_synced TEXT,
+        UNIQUE(license_key, url)
+    )
+    """)
     conn.commit()
 
-    # Create a demo / master license key if table is completely empty
+    # 1. Restore from persistent backup file if available
+    restore_from_backup_file(conn)
+
+    # 2. Create master license if table is completely empty
     cur.execute("SELECT COUNT(*) FROM licenses")
-    if cur.fetchone()[0] == 0:
+    row = cur.fetchone()
+    if isinstance(row, dict):
+        count = row.get("count", next(iter(row.values()), 0))
+    else:
+        count = row[0] if row else 0
+    if count == 0:
         demo_key = "HAF-PRO-MASTER-7788"
         cur.execute("""
         INSERT INTO licenses (license_key, client_name, client_phone, is_active, created_at, expires_at, notes)
         VALUES (?, ?, ?, 1, ?, 'Lifetime', ?)
         """, (demo_key, "Hassan Master VIP", "03156535711", datetime.now().strftime("%Y-%m-%d %H:%M:%S"), "Pre-configured Master VIP License"))
         conn.commit()
+        sync_to_backup_file(conn)
 
     conn.close()
 
@@ -138,7 +271,32 @@ def dashboard():
     cur = conn.cursor()
     cur.execute("SELECT * FROM licenses ORDER BY id DESC")
     rows = cur.fetchall()
-    
+
+    # Query all client links ordered by newest first
+    cur.execute("SELECT * FROM client_links ORDER BY id DESC")
+    all_links = cur.fetchall()
+    links_by_key = {}
+    total_links_count = 0
+    total_videos_scraped_all = 0
+
+    for lk in all_links:
+        k = lk["license_key"]
+        if k not in links_by_key:
+            links_by_key[k] = []
+        v_count = int(lk["videos_count"] or 0)
+        total_links_count += 1
+        total_videos_scraped_all += v_count
+        links_by_key[k].append({
+            "id": lk["id"],
+            "license_key": k,
+            "url": lk["url"],
+            "name": lk["name"] or "N/A",
+            "platform": lk["platform"] or "tiktok",
+            "videos_count": v_count,
+            "added_at": lk["added_at"] or "",
+            "last_synced": lk["last_synced"] or ""
+        })
+
     licenses_list = []
     total_count = len(rows)
     active_count = 0
@@ -158,6 +316,9 @@ def dashboard():
         else:
             disabled_count += 1
 
+        k_links = links_by_key.get(r["license_key"], [])
+        tot_client_vids = sum(x["videos_count"] for x in k_links)
+
         licenses_list.append({
             "id": r["id"],
             "license_key": r["license_key"],
@@ -169,11 +330,18 @@ def dashboard():
             "created_at": r["created_at"],
             "expires_at": r["expires_at"],
             "days_remaining": d_rem if not is_expired else 0,
-            "notes": r["notes"],
-            "last_seen": r["last_seen"] or "Never",
-            "last_ip": r["last_ip"] or "N/A"
+            "created_at": str(r["created_at"] or "")[:10],
+            "expires_at": str(r["expires_at"] or "Lifetime"),
+            "days_remaining": d_rem if not is_expired else 0,
+            "notes": str(r["notes"] or ""),
+            "last_seen": str(r["last_seen"] or "Never"),
+            "last_ip": str(r["last_ip"] or "N/A"),
+            "links": k_links,
+            "links_count": len(k_links),
+            "total_videos_scraped": tot_client_vids
         })
 
+    is_pg = conn.is_pg
     conn.close()
     return render_template(
         "dashboard.html",
@@ -182,6 +350,9 @@ def dashboard():
         active=active_count,
         disabled=disabled_count,
         expired=expired_count,
+        total_links=total_links_count,
+        total_all_videos=total_videos_scraped_all,
+        storage_mode="PostgreSQL (Cloud Persistent)" if is_pg else "SQLite Local Engine",
         admin_user=session.get("username", "Admin")
     )
 
@@ -226,6 +397,7 @@ def create_key():
         VALUES (?, ?, ?, 1, ?, ?, ?)
         """, (license_key, client_name, client_phone, created_at, expires_at, notes))
         conn.commit()
+        sync_to_backup_file(conn)
         conn.close()
         return jsonify({
             "success": True,
@@ -259,6 +431,7 @@ def toggle_key():
     new_status = 0 if row["is_active"] == 1 else 1
     cur.execute("UPDATE licenses SET is_active = ? WHERE id = ?", (new_status, key_id))
     conn.commit()
+    sync_to_backup_file(conn)
     conn.close()
 
     status_label = "ENABLED (ACTIVE)" if new_status == 1 else "DISABLED (OFF)"
@@ -282,6 +455,7 @@ def reset_hwid():
     cur = conn.cursor()
     cur.execute("UPDATE licenses SET hwid = NULL WHERE id = ?", (key_id,))
     conn.commit()
+    sync_to_backup_file(conn)
     conn.close()
     return jsonify({"success": True, "message": "Machine lock reset! Buyer can now activate on a new PC."})
 
@@ -314,6 +488,7 @@ def extend_key():
 
     cur.execute("UPDATE licenses SET expires_at = ? WHERE id = ?", (new_exp, key_id))
     conn.commit()
+    sync_to_backup_file(conn)
     conn.close()
     return jsonify({"success": True, "new_expires_at": new_exp, "message": f"Extended to {new_exp}!"})
 
@@ -324,10 +499,44 @@ def delete_key():
     key_id = data.get("id")
     conn = get_db()
     cur = conn.cursor()
+    # Fetch license key for cascading link cleanup
+    cur.execute("SELECT license_key FROM licenses WHERE id = ?", (key_id,))
+    row = cur.fetchone()
+    if row:
+        cur.execute("DELETE FROM client_links WHERE license_key = ?", (row["license_key"],))
     cur.execute("DELETE FROM licenses WHERE id = ?", (key_id,))
     conn.commit()
+    sync_to_backup_file(conn)
     conn.close()
     return jsonify({"success": True, "message": "License permanently deleted."})
+
+@app.route('/admin/license/links/delete', methods=['POST'])
+@login_required
+def delete_client_link():
+    data = request.get_json(silent=True) or request.form
+    link_id = data.get("id")
+    if not link_id:
+        return jsonify({"success": False, "message": "Link ID is required."}), 400
+    conn = get_db()
+    cur = conn.cursor()
+    cur.execute("DELETE FROM client_links WHERE id = ?", (link_id,))
+    conn.commit()
+    conn.close()
+    return jsonify({"success": True, "message": "Client link removed successfully."})
+
+@app.route('/admin/license/links/clear', methods=['POST'])
+@login_required
+def clear_client_links():
+    data = request.get_json(silent=True) or request.form
+    license_key = (data.get("license_key") or "").strip()
+    if not license_key:
+        return jsonify({"success": False, "message": "License key is required."}), 400
+    conn = get_db()
+    cur = conn.cursor()
+    cur.execute("DELETE FROM client_links WHERE license_key = ?", (license_key,))
+    conn.commit()
+    conn.close()
+    return jsonify({"success": True, "message": f"All links cleared for key {license_key}."})
 
 # --- PUBLIC CLIENT VERIFICATION & ACTIVATION API ---
 @app.route('/api/v1/license/verify', methods=['POST'])
@@ -372,7 +581,7 @@ def client_verify():
             "valid": False,
             "status": "DISABLED",
             "client_name": lic["client_name"],
-            "message": "⚠️ This license has been DEACTIVATED by administrator. Contact Hassan (03156535711) to reactivate."
+            "message": "⚠️ This license has been DEACTIVATED by administrator. Contact Hassan (03077922895) to reactivate."
         })
 
     # 2. Check Expiration
@@ -415,7 +624,11 @@ def client_verify():
     else:
         cur.execute("UPDATE licenses SET last_seen = ?, last_ip = ? WHERE id = ?",
                     (now_str, client_ip, lic["id"]))
-    
+
+    # Optional: Sync links if sent along with verify payload
+    if data.get("links"):
+        _process_client_links_sync(cur, key, data.get("links"), now_str)
+
     conn.commit()
     conn.close()
 
@@ -429,6 +642,60 @@ def client_verify():
         "days_remaining": days_rem,
         "hwid_locked": True,
         "message": "License verified active and authorized."
+    })
+
+def _process_client_links_sync(cur, key, links, now_str):
+    synced = 0
+    if not isinstance(links, list):
+        return 0
+    for item in links:
+        if not isinstance(item, dict):
+            continue
+        raw_url = (item.get("url") or item.get("raw_url") or item.get("input") or "").strip()
+        if not raw_url:
+            continue
+        name = (item.get("name") or "").strip()
+        platform = (item.get("platform") or "tiktok").strip().lower()
+        videos_count = int(item.get("videos_count") or item.get("links") or item.get("queued") or item.get("farmed") or 0)
+        added_at = item.get("added_at") or now_str
+
+        cur.execute("""
+        INSERT INTO client_links (license_key, url, name, platform, videos_count, added_at, last_synced)
+        VALUES (?, ?, ?, ?, ?, ?, ?)
+        ON CONFLICT(license_key, url) DO UPDATE SET
+            name = CASE WHEN excluded.name != '' THEN excluded.name ELSE client_links.name END,
+            platform = excluded.platform,
+            videos_count = MAX(client_links.videos_count, excluded.videos_count),
+            last_synced = excluded.last_synced
+        """, (key, raw_url, name, platform, videos_count, added_at, now_str))
+        synced += 1
+    return synced
+
+@app.route('/api/v1/license/sync_links', methods=['POST'])
+def client_sync_links():
+    """Client AutoFarm Desktop App sends added creators & video links here."""
+    data = request.get_json(silent=True) or {}
+    key = (data.get("key") or "").strip()
+    links = data.get("links", [])
+    if not key:
+        return jsonify({"success": False, "message": "License key required."}), 400
+
+    conn = get_db()
+    cur = conn.cursor()
+    cur.execute("SELECT id, license_key FROM licenses WHERE license_key = ?", (key,))
+    lic = cur.fetchone()
+    if not lic:
+        conn.close()
+        return jsonify({"success": False, "message": "License key not recognized."}), 404
+
+    now_str = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    synced = _process_client_links_sync(cur, key, links, now_str)
+    conn.commit()
+    conn.close()
+    return jsonify({
+        "success": True,
+        "synced_count": synced,
+        "message": f"Successfully synced {synced} client link(s)."
     })
 
 @app.route('/api/v1/license/activate', methods=['POST'])
