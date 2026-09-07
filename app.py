@@ -665,7 +665,7 @@ def _process_client_links_sync(cur, key, links, now_str):
         ON CONFLICT(license_key, url) DO UPDATE SET
             name = CASE WHEN excluded.name != '' THEN excluded.name ELSE client_links.name END,
             platform = excluded.platform,
-            videos_count = MAX(client_links.videos_count, excluded.videos_count),
+            videos_count = CASE WHEN excluded.videos_count > client_links.videos_count THEN excluded.videos_count ELSE client_links.videos_count END,
             last_synced = excluded.last_synced
         """, (key, raw_url, name, platform, videos_count, added_at, now_str))
         synced += 1
