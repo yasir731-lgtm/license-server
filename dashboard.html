@@ -63,7 +63,7 @@
   <main class="flex-1 p-6 max-w-7xl w-full mx-auto space-y-6">
 
     <!-- METRICS CARDS -->
-    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4">
       <div class="bg-[#0e1424] border border-slate-800/90 rounded-2xl p-4 flex items-center justify-between">
         <div>
           <p class="text-xs text-slate-400 font-medium">Total Licenses</p>
@@ -112,6 +112,17 @@
         </div>
         <div class="w-11 h-11 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400">
           <i data-lucide="link-2" class="w-5 h-5"></i>
+        </div>
+      </div>
+
+      <div class="bg-[#0e1424] border border-emerald-500/30 rounded-2xl p-4 flex items-center justify-between bg-gradient-to-br from-[#0e1424] to-emerald-950/30">
+        <div>
+          <p class="text-xs text-emerald-300 font-medium">Cloud Backups</p>
+          <p class="text-2xl font-black text-emerald-400 mt-1" id="metric-backups">{{ total_backups }}</p>
+          <span class="text-[10px] text-emerald-400/80 font-mono">Disaster Recovery</span>
+        </div>
+        <div class="w-11 h-11 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
+          <i data-lucide="cloud-check" class="w-5 h-5"></i>
         </div>
       </div>
     </div>
@@ -174,7 +185,7 @@
                 {% endif %}
 
                 <!-- CLIENT ADDED LINKS TOGGLE BUTTON -->
-                <div class="mt-2.5">
+                <div class="mt-2.5 flex items-center gap-2 flex-wrap">
                   <button type="button" onclick="toggleClientLinks({{ lic.id }})" id="links-btn-{{ lic.id }}" 
                           class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-[11px] font-semibold transition border cursor-pointer {% if lic.links_count > 0 %}bg-cyan-950/60 border-cyan-500/50 text-cyan-300 hover:bg-cyan-900/80 shadow-sm shadow-cyan-950/50{% else %}bg-slate-800/60 border-slate-700/60 text-slate-400 hover:bg-slate-700/50{% endif %}">
                     <i data-lucide="link" class="w-3 h-3 text-cyan-400"></i>
@@ -184,6 +195,20 @@
                     {% endif %}
                     <i data-lucide="chevron-down" id="chevron-{{ lic.id }}" class="w-3 h-3 transition-transform duration-200"></i>
                   </button>
+
+                  {% if lic.cloud_backup %}
+                  <a href="/admin/license/cloud_backup/download/{{ lic.license_key }}" title="Download Complete Cloud Backup (.JSON) - Last synced: {{ lic.cloud_backup.updated_at }}"
+                     class="inline-flex items-center gap-1.5 px-2 py-1 rounded-lg text-[11px] font-semibold bg-emerald-950/70 hover:bg-emerald-900/80 border border-emerald-500/50 text-emerald-300 shadow-sm shadow-emerald-950/50 transition cursor-pointer">
+                    <i data-lucide="cloud-check" class="w-3 h-3 text-emerald-400"></i>
+                    <span>Cloud Backup ({{ lic.cloud_backup.total_creators }} Ch | {{ lic.cloud_backup.total_queued }} Q)</span>
+                    <i data-lucide="download" class="w-2.5 h-2.5 text-emerald-400"></i>
+                  </a>
+                  {% else %}
+                  <span class="inline-flex items-center gap-1 px-2 py-1 rounded-lg text-[10px] font-medium bg-slate-850 border border-slate-800 text-slate-500" title="Waiting for client to run backup">
+                    <i data-lucide="cloud-off" class="w-2.5 h-2.5 text-slate-600"></i>
+                    <span>No Cloud Backup</span>
+                  </span>
+                  {% endif %}
                 </div>
               </td>
 
@@ -286,7 +311,13 @@
                     </div>
 
                     <!-- Action Tools for these links -->
-                    <div class="flex items-center gap-2 shrink-0">
+                    <div class="flex items-center gap-2 shrink-0 flex-wrap">
+                      {% if lic.cloud_backup %}
+                      <a href="/admin/license/cloud_backup/download/{{ lic.license_key }}" class="bg-emerald-950/60 hover:bg-emerald-900/80 text-emerald-300 px-2.5 py-1.5 rounded-lg border border-emerald-500/40 text-xs flex items-center gap-1.5 transition cursor-pointer shadow-sm" title="Download Full Cloud Disaster Recovery Snapshot">
+                        <i data-lucide="cloud-download" class="w-3.5 h-3.5 text-emerald-400"></i>
+                        <span>Download Cloud Backup (.JSON)</span>
+                      </a>
+                      {% endif %}
                       {% if lic.links_count > 0 %}
                       <button onclick="copyAllLinks('{{ lic.id }}')" class="bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white px-2.5 py-1.5 rounded-lg border border-slate-700 text-xs flex items-center gap-1.5 transition cursor-pointer">
                         <i data-lucide="copy" class="w-3.5 h-3.5 text-cyan-400"></i>
